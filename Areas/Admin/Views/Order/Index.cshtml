@@ -1,0 +1,51 @@
+﻿@model List<NhaKhoaQuangVu.Models.Order>
+
+@{
+    // Hàm để định dạng giá tiền: Ví dụ 20000000.00 sẽ thành 20.000.000 VND
+    string FormatPrice(decimal price)
+    {
+        return string.Format("{0:N0} VND", price);
+    }
+}
+
+<h1>Danh Sách Lịch Hẹn</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã đơn đặt hẹn </th>
+            <th>Thời gian đặt hẹn</th>
+            <th>Tổng giá</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.OrderDate</td>
+                <td>@FormatPrice(order.TotalPrice)</td>
+                <td>
+                 
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@order.Id">Xoá</a>
+                </td>
+                <td>
+                   
+                    <ul>
+                        @if (order.OrderDetails != null)
+                        {
+                            @foreach (var detail in order.OrderDetails)
+                            {
+                                <li>@detail.ProductId - @detail.Quantity - @detail.Price</li>
+                            }
+                        }
+                    </ul>
+                    
+                </td>
+            </tr>
+        }
+    
+
+    </tbody>
+</table>

@@ -27,7 +27,7 @@
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Trang Chính</a></li> <!-- Sử dụng class text-white để thiết lập màu chữ trắng -->
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="LienHe">Liên Hệ</a></li>
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="BangGia">Dịch Vụ</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="ShoppingCart" asp-action="Index">Đặt Hẹn</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Đặt Hẹn</a></li>
 
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -36,7 +36,6 @@
                                 <li class="nav-item">
                                     <a id="manage" class="nav-link text-danger" asp-area="Admin" asp-controller="BangGia" asp-action="Index">Dịch Vụ</a>
                                 </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link text-danger" asp-area="Admin" asp-controller="Employee" asp-action="Index">Nhân Viên</a>
                                 </li>
@@ -54,14 +53,11 @@
                                 </li>
                             }
                         }
-
+                    
                     </ul>
                 </div>
-                <form asp-action="Search" asp-controller="Home" method="get">
-                    <input type="text" name="query" placeholder="Tìm kiếm dịch vụ..." />
-                    <button type="submit">Tìm</button>
-                </form>
                 <partial name="_LoginPartial" />
+
             </div>
         </nav>
     </header>
@@ -75,8 +71,7 @@
     <footer id="main-footer" class="bg-secondary">
         <div class="container">
             <div class="row">
-                <div class="">
-                    </br>
+                <div class=""></br>
                     <h3 class="title" style="color: #ffffff;">Nha Khoa Quang Vũ</h3>
                     <div class="textwidget">
                         <p style="color: #ffffff;">
@@ -98,6 +93,8 @@
             </div>
         </div>
     </footer>
+
+
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

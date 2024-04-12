@@ -9,7 +9,7 @@ namespace NhaKhoaQuangVu.DataAccess
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-
+        public DbSet<NhanVien> nhanViens { get; set; }
         public DbSet<BangGia> BangGias { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }

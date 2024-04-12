@@ -1,0 +1,37 @@
+﻿@model NhaKhoaQuangVu.Models.NhanVien
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Sửa thông tin nhân viên";
+}
+
+<h2>Edit Dịch Vụ</h2>
+<form asp-action="Update" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="ID" />
+    <div class="form-group">
+        <label asp-for="HoTen"></label>
+        <input asp-for="HoTen" class="form-control" />
+        <span asp-validation-for="HoTen" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SDT"></label>
+        <input asp-for="SDT" class="form-control" />
+        <span asp-validation-for="SDT" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ChucVu"></label>
+        <input asp-for="ChucVu" class="form-control" />
+        <span asp-validation-for="ChucVu" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DiaChi"></label>
+        <input asp-for="DiaChi" class="form-control" />
+        <span asp-validation-for="DiaChi" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

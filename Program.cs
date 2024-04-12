@@ -41,6 +41,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBangGiaRepository, EFBangGiaRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EFEmployeeRepository>();
+builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddRazorPages();
 
@@ -77,7 +79,10 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "admin",
     pattern: "{area:exists}/{controller=BangGia}/{action=Index}/{id?}");
-
+app.MapControllerRoute(
+name: "employee",
+pattern: "{ area: exists}/{controller=Employee}/{action = Index}/{ id ?}"
+    );
 
 
 app.Run();

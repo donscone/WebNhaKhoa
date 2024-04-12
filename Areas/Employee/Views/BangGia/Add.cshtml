@@ -1,11 +1,10 @@
 ﻿@model NhaKhoaQuangVu.Models.BangGia
 @using Microsoft.AspNetCore.Mvc.Rendering
 @{
-    ViewData["Title"] = "Edit Product";
+    ViewData["Title"] = "Add Dịch Vụ";
 }
-<h2>Edit Dịch Vụ</h2>
-<form asp-action="Update" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="MaDichVu" />
+<h2>Thêm dịch vụ</h2>
+<form asp-action="Add" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="TenDichVu"></label>
         <input asp-for="TenDichVu" class="form-control" />
@@ -24,6 +23,5 @@
 
     </div>
 
-    <button type="submit" class="btn btn-primary">Update</button>
-
+    <button type="submit" class="btn btn-primary">Add</button>
 </form>

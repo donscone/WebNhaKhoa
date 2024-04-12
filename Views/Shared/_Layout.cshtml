@@ -34,11 +34,22 @@
                             if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a id="manage" class="nav-link text-danger" asp-area="Admin" asp-controller="BangGia" asp-action="Index">Admin Dashboard</a>
+                                    <a id="manage" class="nav-link text-danger" asp-area="Admin" asp-controller="BangGia" asp-action="Index">Dịch Vụ</a>
                                 </li>
- 
                                 <li class="nav-item">
-                                    <a class="nav-link text-danger" asp-area="Admin" asp-controller="Employee" asp-action="Index">Employee</a>
+                                    <a class="nav-link text-danger" asp-area="Admin" asp-controller="Employee" asp-action="Index">Nhân Viên</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger" asp-area="Admin" asp-controller="Order" asp-action="Index">Lịch Hẹn</a>
+                                </li>
+                            }
+                            if (User.IsInRole("Employee"))
+                            {
+                                <li class="nav-item">
+                                    <a id="manage" class="nav-link text-danger" asp-area="Employee" asp-controller="BangGia" asp-action="Index">Quản Lý Dịch Vụ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger" asp-area="Employee" asp-controller="Order" asp-action="Index">Quản Lý Lịch Hẹn</a>
                                 </li>
                             }
                         }

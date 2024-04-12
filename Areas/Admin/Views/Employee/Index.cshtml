@@ -1,0 +1,43 @@
+﻿@model IEnumerable<NhaKhoaQuangVu.Models.NhanVien>
+<h2>Danh Sách Nhân Viên</h2>
+<table class="table">
+    <a class="btn btn-primary" asp-action="Add">Add</a>
+    <thead>
+            <tr>
+                <th>ID</th>
+                <th>Họ tên</th>
+                <th>SĐT</th>
+                <th>Email</th>
+                <th>Chức Vụ</th>
+                <th>Địa Chỉ</th>
+                <th>Chức năng</th>
+            </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var nhanVien in Model)
+        {
+            <tr>
+                <td>@nhanVien.ID</td>
+                <td>@nhanVien.HoTen</td>
+                <td>@nhanVien.SDT</td>
+                <td>@nhanVien.Email</td>
+                <td>@nhanVien.ChucVu</td>
+                <td>@nhanVien.DiaChi</td>
+                <td>
+                    <a class="btn btn-success" asp-action="Update" asp-route-id="@nhanVien.ID">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@nhanVien.ID">Delete</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+  
+
+           
+        
+
+   
+  
+    

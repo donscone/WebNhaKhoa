@@ -1,0 +1,33 @@
+﻿@model IEnumerable<NhaKhoaQuangVu.Models.BangGia>
+@{
+    // Hàm để định dạng giá tiề, Ví dụ: 20000000.00 sẽ thành 20.000.000 VND
+    string FormatPrice(decimal price)
+    {
+        return string.Format("{0:N0} VND", price);
+    }
+}
+</br>
+<h2>Quản Lý Dịch Vụ</h2>
+</br>
+<div class="container">
+    <a class="btn btn-primary" asp-action="Add">Thêm Dịch Vụ</a>
+    <div class="row row-cols-3 mt-3">
+        @foreach (var bangGia in Model)
+        {
+            <div class="col mb-4">
+                <!-- Thêm lớp mb-4 để tạo khoảng cách giữa các hàng -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:deepskyblue">@bangGia.TenDichVu</h5>
+                        <p class="card-text fw-bold">Giá dịch vụ: @FormatPrice(bangGia.GiaDichVu)</p>
+                        <p class="card-text">@bangGia.MoTa</p>
+                        <div>
+                            <a class="btn btn-success me-2" asp-action="Update" asp-route-id="@bangGia.MaDichVu">Chỉnh Sửa</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@bangGia.MaDichVu">Xoá</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

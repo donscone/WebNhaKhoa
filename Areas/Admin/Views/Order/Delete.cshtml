@@ -1,0 +1,13 @@
+﻿@model NhaKhoaQuangVu.Models.Order
+</br>
+<h2>Xác nhận Xoá Dịch Vụ</h2>
+</br>
+
+
+<h2>Delete Product</h2>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>Are you sure you want to delete @Model.Id?</p>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>

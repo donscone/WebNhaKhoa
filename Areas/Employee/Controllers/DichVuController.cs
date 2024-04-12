@@ -1,15 +1,12 @@
-﻿using NhaKhoaQuangVu.Repositories;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NhaKhoaQuangVu.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Authorization;
+using NhaKhoaQuangVu.Repositories;
 
-
-
-namespace NhaKhoaQuangVu.Areas.Admin.Controllers
+namespace NhaKhoaQuangVu.Areas.Employee.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    [Area("Employee")]
+    [Authorize(Roles = SD.Role_Employee)]
 
     public class BangGiaController : Controller
     {
@@ -18,14 +15,14 @@ namespace NhaKhoaQuangVu.Areas.Admin.Controllers
         public BangGiaController(IBangGiaRepository productRepository)
         {
             _bangGiaRepository = productRepository;
-         
+
         }
         public async Task<IActionResult> Index()
         {
             var BangGia = await _bangGiaRepository.GetAllAsync();
             return View(BangGia);
         }
-     
+
         public IActionResult Add()
         {
             return View();
@@ -53,7 +50,9 @@ namespace NhaKhoaQuangVu.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int id, BangGia bangGia)
         {
             if (ModelState.IsValid)
-            {          
+            {
+
+
                 await _bangGiaRepository.UpdateAsync(bangGia);
             }
 
@@ -87,4 +86,6 @@ namespace NhaKhoaQuangVu.Areas.Admin.Controllers
         }
 
     }
+
 }
+
