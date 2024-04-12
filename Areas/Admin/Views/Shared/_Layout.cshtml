@@ -27,29 +27,11 @@
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Trang Chính</a></li> <!-- Sử dụng class text-white để thiết lập màu chữ trắng -->
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="LienHe">Liên Hệ</a></li>
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="BangGia">Dịch Vụ</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="ShoppingCart" asp-action="Index">Đặt Hẹn</a></li>
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            if (User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item">
-                                    <a id="manage" class="nav-link text-danger" asp-area="Admin" asp-controller="BangGia" asp-action="Index">Admin Dashboard</a>
-                                </li>
- 
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger" asp-area="Admin" asp-controller="Employee" asp-action="Index">Employee</a>
-                                </li>
-                            }
-                        }
-
+                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Đặt Hẹn</a></li>
                     </ul>
                 </div>
-                <form asp-action="Search" asp-controller="Home" method="get">
-                    <input type="text" name="query" placeholder="Tìm kiếm dịch vụ..." />
-                    <button type="submit">Tìm</button>
-                </form>
                 <partial name="_LoginPartial" />
+
             </div>
         </nav>
     </header>
@@ -85,6 +67,7 @@
             </div>
         </div>
     </footer>
+
 
 
 

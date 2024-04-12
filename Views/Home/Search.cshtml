@@ -1,0 +1,28 @@
+﻿@model IEnumerable<NhaKhoaQuangVu.Models.BangGia>
+<br />
+<h2>Danh Sách Dịch Vụ</h2>
+<div class="container">
+    <br />
+    <div class="row row-cols-3 mt-3">
+        @foreach (var bangGia in Model)
+        {
+            <div class="col mb-4">
+                <!-- Thêm lớp mb-4 để tạo khoảng cách giữa các hàng -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:deepskyblue">@bangGia.TenDichVu</h5>
+                        <p class="card-text fw-bold">Giá dịch vụ: @bangGia.GiaDichVu</p>
+                        <p class="card-text">@bangGia.MoTa</p>
+                        <div>
+                            <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productID="@bangGia.MaDichVu" asp-route-quantity="1">
+                                <button class="btn btn-success me-2">
+                                    <i class="bi-cart-fill me-1"></i> Đặt Dịch Vụ
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

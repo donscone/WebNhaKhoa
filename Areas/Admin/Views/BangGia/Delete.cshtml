@@ -1,0 +1,12 @@
+﻿@model NhaKhoaQuangVu.Models.BangGia
+</br>
+<h2>Xác nhận Xoá Dịch Vụ</h2>
+</br>
+@using (Html.BeginForm("DeleteConfirmed", "BangGia", FormMethod.Post, new { area = "Admin" }))
+{
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="id" value="@Model.MaDichVu" />
+    <p>Bạn Chắc Chắn Muốn Xoá Dịch Vụ "@Model.TenDichVu" ?</p>
+    <button class="btn btn-danger" type="submit">Delete</button>
+}

@@ -4,28 +4,25 @@
 
 <main>
     <section class="row" aria-labelledby="aspnetTitle">
+        </br>
         <h1 id="title">Chào mừng đến với Nha Khoa Quang Vũ</h1>
+        </br>
         <p class="lead">"Uy Tín - Tận Tình - Tận Tâm" chính là yếu tố hàng đầu mà Nha Khoa Quang Vũ luôn mang đến cho khách hàng.</p>
         <img src="/Images/homeImage.jpg" height="600" />
     </section>
 
     <div class="row mt-4">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+        <section class="col-md-6" aria-labelledby="gettingStartedTitle">
             <h2 id="gettingStartedTitle">Bảng Giá Dịch Vụ</h2>
             <p>
                 Tham khảo chi phí cho các dịch vụ, chúng tôi cam kết giá đúng như được thông tin.
             </p>
-            <p><a class="btn btn-outline-dark" href="@Url.Action("BangGia", "BangGia")">Xem ngay &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="@Url.Action("BangGia", "Home")">Xem ngay &raquo;</a></p>
         </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
+        <section class="col-md-6" aria-labelledby="librariesTitle">
             <h2 id="librariesTitle">Đặt Hẹn</h2>
             <p>Hãy để lại thông tin liên lạc của bạn và chúng tôi có thể đặt lịch khám cho bạn.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Đặt ngay &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="@Url.Action("Index", "ShoppingCart")">Đặt ngay &raquo;</a></p>
         </section>
     </div>
 </main>
