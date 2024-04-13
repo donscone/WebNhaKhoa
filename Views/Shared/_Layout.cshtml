@@ -28,7 +28,6 @@
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="LienHe">Liên Hệ</a></li>
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="BangGia">Dịch Vụ</a></li>
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="ShoppingCart" asp-action="Index">Đặt Hẹn</a></li>
-
                         @if (User.Identity.IsAuthenticated)
                         {
                             if (User.IsInRole("Admin"))

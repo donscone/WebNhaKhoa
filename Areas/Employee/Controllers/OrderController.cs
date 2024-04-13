@@ -19,33 +19,6 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
             var NhanVien = await _orderRepository.GetAllAsync();
             return View(NhanVien);
         }
-        public async Task<IActionResult> Update(int id)
-        {
-            var BangGia = await _orderRepository.GetByIdAsync(id);
-            if (BangGia == null)
-            {
-                return NotFound();
-            }
-            return View(BangGia);
-        }
-        [HttpPost]
-        public async Task<IActionResult> Update(int id, Order order)
-        {
-            if (ModelState.IsValid)
-            {
-                await _orderRepository.UpdateAsync(order);
-            }
-            if (id != order.Id)
-            {
-                return NotFound();
-            }
-            if (ModelState.IsValid)
-            {
-                await _orderRepository.UpdateAsync(order);
-                return RedirectToAction(nameof(Index));
-            }
-            return View(order);
-        }
 
         public async Task<IActionResult> Delete(int id)
         {

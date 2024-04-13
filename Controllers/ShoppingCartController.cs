@@ -51,8 +51,9 @@ namespace NhaKhoaQuangVu.Controllers
 
                 // Lưu lại giỏ hàng vào Session sau khi đã thêm mục mới
                 HttpContext.Session.SetObjectAsJson("Cart", cart);
-            }
 
+
+            }
             return RedirectToAction("BangGia", "Home");
         }
 

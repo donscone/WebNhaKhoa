@@ -22,3 +22,33 @@ footer.footer {
     bottom: 0;
     width: 100%;
 }
+
+
+
+
+
+
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* ?? bóng cho popup */
+    z-index: 1000;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}

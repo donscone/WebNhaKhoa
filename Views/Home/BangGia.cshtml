@@ -1,10 +1,4 @@
-﻿@{
-    ViewData["Title"] = "Dịch Vụ";
-    string FormatPrice(decimal price)
-    {
-        return string.Format("{0:N0} VND", price);
-    }
-}
+﻿
 @model IEnumerable<NhaKhoaQuangVu.Models.BangGia>
 <br />
 <h2>Danh Sách Dịch Vụ</h2>
@@ -17,13 +11,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="color:deepskyblue">@bangGia.TenDichVu</h5>
-                        <p class="card-text fw-bold">Giá dịch vụ: @FormatPrice(bangGia.GiaDichVu)</p>
+                        <p class="card-text fw-bold">Giá dịch vụ: @string.Format("{0:N0} VND", bangGia.GiaDichVu)</p>
                         <p class="card-text">@bangGia.MoTa</p>
                         <div>
                             <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productID="@bangGia.MaDichVu" asp-route-quantity="1">
-                                <button class="btn btn-success me-2">
-                                    <i class="bi-cart-fill me-1"></i> Đặt Dịch Vụ
-                                </button>
+                                <button class="btn btn-success me-2" onclick="showPopup()">Đặt Dịch Vụ</button>
                             </a>
                         </div>
                     </div>
@@ -32,3 +24,14 @@
         }
     </div>
 </div>
+
+<div id="smallPopup" class="popup">
+    <div class="popup-content">
+        <p>Thêm thành công.</p>
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="~/css/site.css">
+<script src="~/js/site.js"></script>
+
