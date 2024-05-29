@@ -1,6 +1,6 @@
-Project Lập Trình Web
+Project Đồ Án Cơ Sở - Website Nha Khoa
 ---------------------------------
-|            NHÓM 01            |
+|            NHÓM ABC           |
 ---------------------------------
 
 - Đồ án dùng ASP.net Core
