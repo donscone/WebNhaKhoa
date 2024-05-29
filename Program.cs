@@ -43,6 +43,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IBangGiaRepository, EFBangGiaRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EFEmployeeRepository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
+builder.Services.AddScoped<IDatHenRepository, EFDatHenRepository>();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddRazorPages();
 

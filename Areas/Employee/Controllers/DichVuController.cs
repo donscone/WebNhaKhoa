@@ -51,8 +51,6 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 await _bangGiaRepository.UpdateAsync(bangGia);
             }
 

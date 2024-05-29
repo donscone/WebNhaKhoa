@@ -49,8 +49,6 @@ namespace NhaKhoaQuangVu.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
                 await _employeeRepository.UpdateAsync(nhanVien);
             }
 

@@ -1,4 +1,4 @@
-html {
+﻿html {
   font-size: 14px;
 }
 
@@ -23,12 +23,6 @@ footer.footer {
     width: 100%;
 }
 
-
-
-
-
-
-
 .popup {
     display: none;
     position: fixed;
@@ -38,7 +32,7 @@ footer.footer {
     background-color: #fefefe;
     padding: 20px;
     border: 1px solid #888;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* ?? b�ng cho popup */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* ?? bóng cho popup */
     z-index: 1000;
 }
 
@@ -52,3 +46,58 @@ footer.footer {
     right: 10px;
     cursor: pointer;
 }
+
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 6px 12px;
+    margin-left: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    .search-button:hover {
+        background-color: #0056b3;
+    }
+
+
+
+@keyframes shake {
+    0% {
+        transform: rotate(-2deg);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
+
+    100% {
+        transform: rotate(-2deg);
+    }
+}
+
+.bg-light-blue {
+    background-color: #e0f7fa; /* Màu xanh nhạt */
+    transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+}
+
+    .bg-light-blue:hover {
+        background-color: #b2ebf2; /* Màu xanh nhạt khi hover */
+        animation: shake 0.4s infinite; /* Lắc card khi hover */
+    }

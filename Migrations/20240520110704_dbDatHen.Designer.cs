@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NhaKhoaQuangVu.DataAccess;
 
@@ -11,9 +12,10 @@ using NhaKhoaQuangVu.DataAccess;
 namespace NhaKhoaQuangVu.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240520110704_dbDatHen")]
+    partial class dbDatHen
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -262,6 +264,9 @@ namespace NhaKhoaQuangVu.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("BangGiaMaDichVu")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("GioHen")
                         .HasColumnType("datetime2");
 
@@ -279,15 +284,9 @@ namespace NhaKhoaQuangVu.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TrangThai")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("BangGiaMaDichVu");
 
                     b.ToTable("datHens");
                 });
@@ -434,6 +433,15 @@ namespace NhaKhoaQuangVu.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("NhaKhoaQuangVu.Models.DatHen", b =>
+                {
+                    b.HasOne("NhaKhoaQuangVu.Models.BangGia", "BangGia")
+                        .WithMany()
+                        .HasForeignKey("BangGiaMaDichVu");
+
+                    b.Navigation("BangGia");
                 });
 
             modelBuilder.Entity("NhaKhoaQuangVu.Models.Order", b =>

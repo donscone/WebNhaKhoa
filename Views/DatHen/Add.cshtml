@@ -1,0 +1,111 @@
+﻿@model NhaKhoaQuangVu.Models.DatHen
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Đặt Lịch Hẹn";
+}
+
+@section Scripts
+{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: '/Home/AutocompleteSearch'
+            });
+        });
+    </script>
+}
+
+<style>
+    .background-image {
+        background-image: url('/path/to/your/image.jpg'); /* Đường dẫn đến hình ảnh nền */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card {
+        background-color: #f2f2f2; /* Màu xám nhạt */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header, .card-title {
+        color: #333; /* Màu chữ */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Màu nền ban đầu của nút */
+        color: #fff; /* Màu chữ ban đầu của nút */
+        transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển đổi màu */
+    }
+
+        .btn-primary:hover {
+            background-color: forestgreen; /* Màu nền khi hover */
+            color: #fff; /* Màu chữ khi hover */
+        }
+</style>
+
+<br />
+<div class="row justify-content-center">
+    <div class="col-md-8 background-image">
+        <div class="card shadow-sm">
+            <div class="card-header text-center">
+                <h3 class="card-title mb-0">Nhập Thông Tin Để Đặt Lịch</h3>
+            </div>
+            <div class="card-body">
+                <form asp-controller="DatHen" asp-action="Add" method="post">
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="HoTen" class="font-weight-bold">Tên Khách Hàng:</label>
+                        <input asp-for="HoTen" class="form-control" />
+                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="SDT" class="font-weight-bold">Số Điện Thoại:</label>
+                        <input asp-for="SDT" class="form-control" />
+                        <span asp-validation-for="SDT" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="NgayHen" class="font-weight-bold">Ngày Hẹn:</label>
+                        <input asp-for="NgayHen" class="form-control" type="date" />
+                        <span asp-validation-for="NgayHen" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="GioHen" class="font-weight-bold">Giờ Hẹn:</label>
+                        <input asp-for="GioHen" class="form-control" type="time" />
+                        <span asp-validation-for="GioHen" class="text-danger"></span>
+                    </div>
+
+                    <input type="hidden" asp-for="TrangThai" value="Đã đặt hẹn" />
+
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="MaDichVu" class="font-weight-bold">Dịch Vụ:</label>
+                        <select asp-for="MaDichVu" class="form-control">
+                            <option value="">- Chọn dịch vụ -</option>
+                            @foreach (var item in ViewBag.DichVuList as List<SelectListItem>)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="MaDichVu" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <br />
+                        <button type="submit" class="btn btn-primary">Thêm Lịch Hẹn</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

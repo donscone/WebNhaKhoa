@@ -27,9 +27,13 @@
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Trang Chính</a></li> <!-- Sử dụng class text-white để thiết lập màu chữ trắng -->
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="LienHe">Liên Hệ</a></li>
                         <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="BangGia">Dịch Vụ</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="ShoppingCart" asp-action="Index">Đặt Hẹn</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="DatHen" asp-action="Add">Đặt Hẹn</a></li>
                         @if (User.Identity.IsAuthenticated)
-                        {
+                        {             
+                            if (User.IsInRole("Customer"))
+                            {                               
+                                <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="ShoppingCart" asp-action="Index">Đặt Hẹn Cũ</a></li>
+                            }
                             if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
@@ -55,10 +59,13 @@
 
                     </ul>
                 </div>
-                <form asp-action="Search" asp-controller="Home" method="get">
-                    <input type="text" name="query" placeholder="Tìm kiếm dịch vụ..." />
-                    <button type="submit">Tìm</button>
+
+                <form action="@Url.Action("Search", "Home")" method="get" class="search-form">
+                    <input id="autocomplete" type="text" name="query" class="search-input" placeholder="Tìm kiếm dịch vụ..." />
+                    <button type="submit" class="search-button">Tìm</button>
                 </form>
+
+
                 <partial name="_LoginPartial" />
             </div>
         </nav>
@@ -97,6 +104,29 @@
     </footer>
 
 
+    <style>
+        .navbar-nav .nav-item:hover .nav-link {
+            background-color: turquoise;
+            transform: scale(1.1) translateY(-5px);
+            transition: transform 0.3s ease, background-color 0.3s ease; /* Thêm hiệu ứng chuyển đổi màu nền */
+            border-radius: 10px; /* Đặt giá trị cho border-radius để bo tròn góc */
+        }
+    </style>
+
+
+    @section Scripts
+    {
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#autocomplete").autocomplete({
+                    source: '/Home/Search'
+                });
+            });
+        </script>
+    }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

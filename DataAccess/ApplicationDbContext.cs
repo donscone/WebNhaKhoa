@@ -13,7 +13,7 @@ namespace NhaKhoaQuangVu.DataAccess
         public DbSet<BangGia> BangGias { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
+        public DbSet<DatHen> datHens { get; set; }
 
     }
 }

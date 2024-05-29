@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NhaKhoaQuangVu.DataAccess;
 using NhaKhoaQuangVu.Models;
 using NhaKhoaQuangVu.Repositories;
 using System.Diagnostics;
@@ -9,11 +11,12 @@ namespace NhaKhoaQuangVu.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IBangGiaRepository _bangGiaRepository;
-
-        public HomeController(ILogger<HomeController> logger, IBangGiaRepository bangGiaRepository)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, IBangGiaRepository bangGiaRepository, ApplicationDbContext context)
         {
             _logger = logger;
             _bangGiaRepository = bangGiaRepository;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -26,7 +29,15 @@ namespace NhaKhoaQuangVu.Controllers
             var bangGias = await _bangGiaRepository.GetAllAsync();
             return View(bangGias);
         }
-
+        [HttpGet]
+        public IActionResult AutocompleteSearch(string term)
+        {
+            var product = _context.BangGias
+                .Where(c => c.TenDichVu.Contains(term))
+                .Select(c => c.TenDichVu)
+                .ToList();
+            return Ok(product);
+        }
         public IActionResult LienHe()
         {
             return View();

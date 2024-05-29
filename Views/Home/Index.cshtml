@@ -1,28 +1,40 @@
-﻿@{
+﻿@model List<NhaKhoaQuangVu.Models.DatHen>
+@{
     ViewBag.Title = "Nha Khoa Quang Vũ";
 }
-
+@section Scripts
+{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: '/Home/AutocompleteSearch'
+            });
+        });
+    </script>
+}
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        </br>
-        <h1 id="title">Chào mừng đến với Nha Khoa Quang Vũ</h1>
-        </br>
-        <p class="lead">"Uy Tín - Tận Tình - Tận Tâm" chính là yếu tố hàng đầu mà Nha Khoa Quang Vũ luôn mang đến cho khách hàng.</p>
-        <img src="/Images/homeImage.jpg" height="600" />
+    <section class="row text-center" aria-labelledby="aspnetTitle">
+        <h1 id="title" class="my-4">Chào mừng đến với Nha Khoa Quang Vũ</h1>
+        <p class="lead mb-4">"Uy Tín - Tận Tình - Tận Tâm" chính là yếu tố hàng đầu mà Nha Khoa Quang Vũ luôn mang đến cho khách hàng.</p>
+        <img src="/Images/homeImage.jpg" alt="Nha Khoa Quang Vũ" class="img-fluid mb-4 w-50" />
+        <img src="~/images/dental-booking.jpg" alt="Nha Khoa Quang Vũ" class="img-fluid mb-4 w-50" />
     </section>
 
     <div class="row mt-4">
         <section class="col-md-6" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Đặt Hẹn Dịch Vụ</h2>
+            <h2 id="gettingStartedTitle">Xem Dịch Vụ</h2>
             <p>
                 Tham khảo chi phí cho các dịch vụ, chúng tôi cam kết giá đúng như được thông tin.
             </p>
-            <p><a class="btn btn-outline-dark" href="@Url.Action("BangGia", "Home")">Chọn dịch vụ ngay &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="@Url.Action("BangGia", "Home")">Xem các dịch vụ &raquo;</a></p>
         </section>
         <section class="col-md-6" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Đặt Hẹn</h2>
+            <h2 id="librariesTitle">Đặt Lịch Khám</h2>
             <p>Hãy đặt lịch khám cho bạn và chúng tôi sẽ liên hệ cho bạn cách sớm nhất.</p>
-            <p><a class="btn btn-outline-dark" href="@Url.Action("Index", "ShoppingCart")">Đặt ngay &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="@Url.Action("Add", "DatHen")">Đặt lịch ngay &raquo;</a></p>
         </section>
     </div>
 </main>
