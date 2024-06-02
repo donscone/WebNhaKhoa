@@ -2,7 +2,19 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
 @{
     ViewData["Title"] = "Cập Nhật Lịch Hẹn";
+    int unconsultedCount = ViewBag.UnconsultedCount ?? 0;
 }
+
+<script>
+    function hoanThanhTuVan(id) {
+        if (confirm("Bạn có chắc chắn muốn hoàn thành tư vấn cho lịch hẹn này không?")) {
+            window.location.href = "/Employee/LichHen/HoanThanhTuVan?id=" + id;
+        }
+    }
+    function quayLai() {
+        window.history.back();
+    }
+</script>
 
 <h1 class="display-4">Cập Nhật Lịch Hẹn</h1>
 
@@ -60,11 +72,13 @@
                     <option value="Đã cập nhật">Đã cập nhật</option>
                     <option value="Đã hoàn thành">Đã hoàn thành</option>
                     <option value="Đã huỷ">Đã huỷ</option>
+                    <option value="Đã tư vấn">Đã tư vấn</option>
                 </select>
                 <span asp-validation-for="TrangThai" class="text-danger"></span>
             </div>
             <br />
             <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            <button class="btn btn-secondary" onclick="quayLai()">Quay lại</button>
         </form>
     </div>
 </div>

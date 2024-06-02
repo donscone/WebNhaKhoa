@@ -45,5 +45,10 @@ namespace NhaKhoaQuangVu.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<int> ThongBaoTuVanCountAsync()
+        {
+            return await _context.datHens.CountAsync(dh => dh.TrangThai == "Đã đặt lịch");
+        }
+
     }
 }

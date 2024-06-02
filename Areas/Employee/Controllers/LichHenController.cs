@@ -19,11 +19,28 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
             _bangGiaRepository = bangGiaRepository;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string trangThai = "", string soDienThoai = "")
         {
             var datHenList = await _datHenRepository.GetAllAsync();
+            if (!string.IsNullOrEmpty(trangThai))
+            {
+                datHenList = datHenList.Where(d => d.TrangThai == trangThai).ToList();
+            }
+            if (!string.IsNullOrEmpty(soDienThoai))
+            {
+                datHenList = datHenList.Where(d => d.SDT.Contains(soDienThoai)).ToList();
+            }
+
+            // Sắp xếp theo thứ tự trạng thái
+            var orderedStatuses = new List<string> { "Đã đặt lịch", "Đã tư vấn", "Đã hoàn thành", "Đã huỷ" };
+            datHenList = datHenList.OrderBy(d => orderedStatuses.IndexOf(d.TrangThai)).ToList();
+
+            var unconsultedCount = await _datHenRepository.ThongBaoTuVanCountAsync();
+            ViewBag.UnconsultedCount = unconsultedCount;
+            ViewBag.SelectedStatus = trangThai;
             return View(datHenList);
         }
+
 
         public async Task<IActionResult> Update(int id)
         {
@@ -41,22 +58,21 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
         {
             var danhSachDichVu = await _bangGiaRepository.GetAllAsync();
             ViewBag.DichVuList = danhSachDichVu.Select(dv => new SelectListItem { Value = dv.MaDichVu.ToString(), Text = dv.TenDichVu }).ToList();
-            if (ModelState.IsValid)
-            {
-                await _datHenRepository.UpdateAsync(lichHen);
-            }
 
             if (id != lichHen.Id)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
                 await _datHenRepository.UpdateAsync(lichHen);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ThongTinLichHen", new { id = lichHen.Id });
             }
+
             return View(lichHen);
         }
+
 
         public async Task<IActionResult> Delete(int id)
         {
@@ -76,5 +92,86 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
             await _datHenRepository.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Cancel(int id)
+        {
+            var lichHen = await _datHenRepository.GetByIdAsync(id);
+            if (lichHen == null)
+            {
+                return NotFound();
+            }
+
+            lichHen.TrangThai = "Đã huỷ";
+            await _datHenRepository.UpdateAsync(lichHen);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> HoanThanhTuVan(int id)
+        {
+            var lichHen = await _datHenRepository.GetByIdAsync(id);
+            if (lichHen == null)
+            {
+                return NotFound();
+            }
+
+            lichHen.TrangThai = "Đã tư vấn";
+            await _datHenRepository.UpdateAsync(lichHen);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> ThongTinLichHen(int id, string TenDichVu)
+        {
+            var datHen = await _datHenRepository.GetByIdAsync(id);
+            if (datHen == null)
+            {
+                return NotFound(); 
+            }
+            var dichVu = await _bangGiaRepository.GetByIdAsync(datHen.MaDichVu);
+            if (dichVu == null)
+            {
+                return NotFound();
+            }
+            ViewBag.TenDichVu = dichVu.TenDichVu;
+
+            return View(datHen);
+        }
+
+        public async Task<IActionResult> Details(int id, string TenDichVu)
+        {
+            var datHen = await _datHenRepository.GetByIdAsync(id);
+            if (datHen == null)
+            {
+                return NotFound();
+            }
+            var dichVu = await _bangGiaRepository.GetByIdAsync(datHen.MaDichVu);
+            if (dichVu == null)
+            {
+                return NotFound();
+            }
+            ViewBag.TenDichVu = dichVu.TenDichVu;
+
+            return View(datHen);
+        }
+
+        public async Task<IActionResult> CapNhat(int id, string TenDichVu)
+        {
+            var datHen = await _datHenRepository.GetByIdAsync(id);
+            if (datHen == null)
+            {
+                return NotFound();
+            }
+            var dichVu = await _bangGiaRepository.GetByIdAsync(datHen.MaDichVu);
+            if (dichVu == null)
+            {
+                return NotFound();
+            }
+            ViewBag.TenDichVu = dichVu.TenDichVu;
+
+            return View(datHen);
+        }
+
+
     }
 }

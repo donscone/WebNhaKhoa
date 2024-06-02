@@ -11,5 +11,6 @@ namespace NhaKhoaQuangVu.Repositories
         Task<IEnumerable<DatHen>> GetAllAsync();
         Task<DatHen> GetByIdAsync(int id);
         Task UpdateAsync(DatHen datHen);
+        Task<int> ThongBaoTuVanCountAsync();
     }
 }

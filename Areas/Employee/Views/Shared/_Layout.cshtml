@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/NhaKhoaQuangVu.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKVBKC5M4b9J1l91F0ekIBKvzl5A2Om7O1mNABf5VbR5bOn5aw7jup7Vfmg3mG5B61i3mg==" crossorigin="anonymous" />
 
     <style>
         .footer-spacing {
@@ -18,14 +19,12 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Nha Khoa Quang Vũ</a>
+                <a class="navbar-brand" asp-area="Employee" asp-controller="LichHen" asp-action="Index">Nha Khoa Quang Vũ</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon" style="color: white;"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Trang Chính</a></li> <!-- Sử dụng class text-white để thiết lập màu chữ trắng -->
-                        <li class="nav-item"><a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="LienHe">Liên Hệ</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             if (User.IsInRole("Admin"))
@@ -48,16 +47,36 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-danger" asp-area="Employee" asp-controller="Order" asp-action="Index">Quản Lý Lịch Hẹn</a>
                                 </li>
+                                @if (ViewBag.UnconsultedCount > 0)
+                                {
+                                    <li class="nav-item unconsulted">
+                                        <a class="nav-link text-danger" asp-area="Employee" asp-controller="LichHen" asp-action="Index">
+                                            Lịch Hẹn Mới <span class="badge">(@ViewBag.UnconsultedCount)</span>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" asp-area="Employee" asp-controller="LichHen" asp-action="Index">Lịch Hẹn Mới</a>
+                                    </li>
+                                }
                                 <li class="nav-item">
-                                    <a class="nav-link text-danger" asp-area="Employee" asp-controller="LichHen" asp-action="Index">Lịch Hẹn Mới</a>
+                                    <a class="nav-link text-danger" asp-area="Employee" asp-controller="ThongBao" asp-action="Index">
+                                        <i class="fas fa-bell"></i> Thông Báo
+                                        @if (ViewBag.NotificationCount > 0)
+                                        {
+                                            <span class="badge">@ViewBag.NotificationCount</span>
+                                        }
+                                    </a>
                                 </li>
+
                             }
                         }
-                    
                     </ul>
+                    <!-- Thêm phần thông báo icon ở đây -->
                 </div>
                 <partial name="_LoginPartial" />
-
             </div>
         </nav>
     </header>
@@ -93,8 +112,6 @@
             </div>
         </div>
     </footer>
-
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

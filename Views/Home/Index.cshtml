@@ -14,13 +14,70 @@
             });
         });
     </script>
+    <style>
+        .img-container {
+            position: relative;
+            display: inline-block;
+            width: 50%;
+            margin-bottom: 1rem;
+            overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài container */
+        }
+
+            .img-container img {
+                width: 620px; /* Kích thước chiều rộng cố định */
+                height: 400px;
+                display: block;
+                object-fit: cover; /* Đảm bảo ảnh được căn chỉnh và điều chỉnh để phù hợp với container */
+                max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+                max-height: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+                transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+            }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 102, 204, 0.8); /* Lớp phủ màu xanh với độ mờ */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+        }
+
+        .img-container:hover .overlay {
+            opacity: 1;
+        }
+
+        /* Hiệu ứng khi hover vào ảnh */
+        .img-container:hover img {
+            transform: scale(1.1); /* Phóng to ảnh khi hover */
+        }
+
+        #title:hover {
+            color: deepskyblue;
+            transform: scale(1.3);
+        }
+    </style>
+
 }
+
 <main>
     <section class="row text-center" aria-labelledby="aspnetTitle">
         <h1 id="title" class="my-4">Chào mừng đến với Nha Khoa Quang Vũ</h1>
         <p class="lead mb-4">"Uy Tín - Tận Tình - Tận Tâm" chính là yếu tố hàng đầu mà Nha Khoa Quang Vũ luôn mang đến cho khách hàng.</p>
-        <img src="/Images/homeImage.jpg" alt="Nha Khoa Quang Vũ" class="img-fluid mb-4 w-50" />
-        <img src="~/images/dental-booking.jpg" alt="Nha Khoa Quang Vũ" class="img-fluid mb-4 w-50" />
+        <div class="img-container">
+            <img src="/Images/homeImage.jpg" alt="Nha Khoa Quang Vũ" class="img-fluid" />
+            <div class="overlay">Nha Khoa Quang Vũ</div>
+        </div>
+        <div class="img-container">
+            <img src="/images/dental-booking.jpg" alt="Nha Khoa Quang Vũ" class="img-fluid" />
+            <div class="overlay">Nha Khoa Quang Vũ</div>
+        </div>
     </section>
 
     <div class="row mt-4">

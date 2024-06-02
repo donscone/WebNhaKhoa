@@ -94,10 +94,85 @@ footer.footer {
 
 .bg-light-blue {
     background-color: #e0f7fa; /* Màu xanh nhạt */
-    transition: background-color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi cho màu nền và transform */
 }
 
     .bg-light-blue:hover {
         background-color: #b2ebf2; /* Màu xanh nhạt khi hover */
-        animation: shake 0.4s infinite; /* Lắc card khi hover */
+        transform: scale(1.1); /* Phóng to khi hover */
     }
+
+
+@keyframes colorBlink {
+    0% {
+        color: black;
+    }
+
+    50% {
+        color: deepskyblue;
+    }
+
+    100% {
+        color: black;
+    }
+}
+
+
+@keyframes borderAnimation {
+    0% {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: #fff;
+    }
+
+    100% {
+        border-color: transparent;
+    }
+}
+
+.btn-border-animation {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+    .btn-border-animation::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 7px solid #fff; /* Tăng độ dày của viền */
+        border-radius: 25px;
+        box-sizing: border-box;
+        animation: borderAnimation 2s linear infinite;
+    }
+
+@keyframes borderAnimation {
+    0% {
+        border-color: transparent;
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        border-color: #fff;
+        opacity: 0.8; /* Giữ cho viền đậm hơn */
+        transform: scale(1.05); /* Tăng nhẹ kích thước để tạo hiệu ứng nhấp nháy rõ ràng hơn */
+    }
+
+    100% {
+        border-color: transparent;
+        opacity: 1;
+        transform: scale(1);
+    }
+}

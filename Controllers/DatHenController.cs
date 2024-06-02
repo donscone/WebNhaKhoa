@@ -25,7 +25,7 @@ namespace NhaKhoaQuangVu.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var datHenList = await _datHenRepository.GetAllAsync();
+            var datHenList = await _datHenRepository.GetAllAsync();         
             return View(datHenList);
         }
 

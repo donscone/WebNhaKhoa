@@ -1,0 +1,41 @@
+﻿@model NhaKhoaQuangVu.Models.DatHen
+@{
+    ViewData["Title"] = "Thông Tin Lịch Hẹn";
+    int unconsultedCount = ViewBag.UnconsultedCount ?? 0;
+}
+
+<br />
+<h1 class="text-center mb-4 text-primary">@ViewData["Title"]</h1>
+
+<script>
+    function hoanThanhTuVan(id) {
+        if (confirm("Bạn có chắc chắn muốn hoàn thành tư vấn cho lịch hẹn này không?")) {
+            window.location.href = "/Employee/LichHen/HoanThanhTuVan?id=" + id;
+        }
+    }
+    function quayLai() {
+        window.history.back();
+    }
+</script>
+<br />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <h2 class="card-title text-success text-center">Tên khách hàng: @Model.HoTen</h2>
+                    <br />
+                    <p class="card-text"><strong>ID Lịch Hẹn:</strong> @Model.Id</p>
+                    <p class="card-text"><strong>Số Điện Thoại:</strong> @Model.SDT</p>
+                    <p class="card-text"><strong>Ngày Đặt Hẹn:</strong> @Model.NgayHen.ToString("dd/MM/yyyy")</p>
+                    <p class="card-text"><strong>Giờ Đặt Hẹn:</strong> @Model.GioHen.ToString("HH:mm")</p>
+                    <p class="card-text"><strong>Dịch Vụ Đặt Hẹn:</strong> @ViewBag.TenDichVu</p>
+                    <br />
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-secondary" onclick="quayLai()">Quay lại</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

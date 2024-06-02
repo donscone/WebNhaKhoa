@@ -6,6 +6,7 @@ using NhaKhoaQuangVu.DataAccess;
 using NhaKhoaQuangVu.Repositories;
 using NhaKhoaQuangVu.Models;
 using Microsoft.AspNetCore.Identity;
+using NhaKhoaQuangVu.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,6 +68,8 @@ app.UseEndpoints(endpoints =>
          name: "areas",
          pattern: "{area:exists}/{controller=BangGia}/{action=Index}/{id?}"
         );
+
+    endpoints.MapEmployeeDefaultAreaRoute();
 });
 
 app.MapControllerRoute(
@@ -82,7 +85,7 @@ app.MapControllerRoute(
     pattern: "{area:exists}/{controller=BangGia}/{action=Index}/{id?}");
 app.MapControllerRoute(
 name: "employee",
-pattern: "{ area: exists}/{controller=Employee}/{action = Index}/{ id ?}"
+pattern: "{ area: exists}/{controller=Employee}/{action = Update}/{ id ?}"
     );
 
 

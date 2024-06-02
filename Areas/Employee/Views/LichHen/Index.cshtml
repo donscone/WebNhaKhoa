@@ -1,16 +1,80 @@
 ﻿@model List<NhaKhoaQuangVu.Models.DatHen>
 @{
     ViewData["Title"] = "Danh Sách Lịch Hẹn";
+    int unconsultedCount = ViewBag.UnconsultedCount ?? 0;
 }
+
 <br />
+<h2>Lịch Hẹn</h2>
+
+@if (unconsultedCount > 0)
+{
+    <div class="alert alert-warning" role="alert">
+        Có <strong>@unconsultedCount</strong> lịch hẹn chưa được tư vấn.
+    </div>
+}
+
+<script>
+    function xacNhanNhanTuVan(id) {
+        if (confirm("Bạn có chắc chắn muốn nhận tư vấn cho lịch hẹn này không?")) {
+            window.location.href = "/Employee/LichHen/NhanTuVan?id=" + id;
+        } else {
+            return false; // Quay lại nếu người dùng chọn "Huỷ"
+        }
+    }
+    @functions {
+        public string GetTextColorClass(string trangThai)
+        {
+            switch (trangThai)
+            {
+                case "Đã đặt lịch":
+                    return "text-danger font-weight-bold";
+                case "Đã hoàn thành":
+                    return "text-success font-weight-bold";
+                case "Đã tư vấn":
+                    return "text-primary font-weight-bold";
+                case "Đã huỷ":
+                    return "text-muted font-weight-bold";
+                default:
+                    return ""; // Hoặc trả về một lớp CSS mặc định nếu cần
+            }
+        }
+    }
+</script>
+
+
 <h1 class="display-4">Danh Sách Lịch Hẹn</h1>
-<br />
 <div class="row">
     <div class="col-md-12">
+        <form asp-action="Index" method="get">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="TrangThai">Lọc trạng thái:</label>
+                        <select id="TrangThai" name="TrangThai" class="form-select form-select-sm" style="max-width: 150px;" onchange="this.form.submit()">
+                            <option value="" selected="@((string)ViewBag.SelectedStatus == "" ? "selected" : null)">Tất cả</option>
+                            <option value="Đã đặt lịch" selected="@((string)ViewBag.SelectedStatus == "Đã đặt lịch" ? "selected" : null)">Đã đặt lịch</option>
+                            <option value="Đã hoàn thành" selected="@((string)ViewBag.SelectedStatus == "Đã hoàn thành" ? "selected" : null)">Đã hoàn thành</option>
+                            <option value="Đã tư vấn" selected="@((string)ViewBag.SelectedStatus == "Đã tư vấn" ? "selected" : null)">Đã tư vấn</option>
+                            <option value="Đã huỷ" selected="@((string)ViewBag.SelectedStatus == "Đã huỷ" ? "selected" : null)">Đã huỷ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input id="SoDienThoai" name="SoDienThoai" type="text" class="form-control" placeholder="Tìm bằng Số điện thoại" />
+                        <button type="submit" class="btn btn-primary me-2 btn-rounded">Tìm kiếm</button>
+                        <a href="/Employee/LichHen/Index" class="btn btn-secondary me-2 btn-rounded">Quay lại</a>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <br />
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Mã Lịch Hẹn</th>
+                    <th>ID</th>
                     <th>Tên Khách Hàng</th>
                     <th>Số Điện Thoại</th>
                     <th>Ngày Hẹn</th>
@@ -25,14 +89,55 @@
                 {
                     <tr>
                         <td>@datHen.Id</td>
-                        <td>@datHen.HoTen</td>
+                        <td class="@GetTextColorClass(datHen.TrangThai)"><strong>@datHen.HoTen.ToUpper()</strong></td>
                         <td>@datHen.SDT</td>
                         <td>@datHen.NgayHen.ToString("dd/MM/yyyy")</td>
                         <td>@datHen.GioHen.ToString("HH:mm")</td>
-                        <td>@datHen.MaDichVu</td>
-                        <td>@datHen.TrangThai</td>
+                        <td>@ViewBag.TenDichVu</td>
+                        @if (datHen.TrangThai == "Đã đặt lịch")
+                        {
+                            <td class="text-danger font-weight-bold"><strong>@datHen.TrangThai.ToUpper()</strong></td>
+                        }
+                        else if (datHen.TrangThai == "Đã hoàn thành")
+                        {
+                            <td class="text-success font-weight-bold"><strong>@datHen.TrangThai.ToUpper()</strong></td>
+                        }
+                        else if (datHen.TrangThai == "Đã tư vấn")
+                        {
+                            <td class="text-primary font-weight-bold"><strong>@datHen.TrangThai.ToUpper()</strong></td>
+                        }
+                        else if (datHen.TrangThai == "Đã huỷ")
+                        {
+                            <td><s><strong>@datHen.TrangThai.ToUpper()</strong></s></td>
+                        }
+                        else
+                        {
+                            <td><strong>@datHen.TrangThai.ToUpper()</strong></td>
+                        }
+
+                        <style>
+                            .btn-rounded {
+                                border-radius: 20px; /* Điều chỉnh giá trị này để thay đổi độ cong của nút */
+                            }
+                        </style>
+
                         <td>
-                            <a class="btn btn-success me-2" asp-action="Update" asp-route-id="@datHen.Id">Chỉnh Sửa</a>
+                            @if (datHen.TrangThai == "Đã đặt lịch")
+                            {
+                                <a class="btn btn-primary me-2 btn-rounded btn-border-animation" style="width: 150px;" asp-action="ThongTinLichHen" asp-route-id="@datHen.Id" onclick="return xacNhanNhanTuVan('@datHen.Id')">Nhận Tư Vấn</a>
+                            }
+                            else if (datHen.TrangThai == "Đã hoàn thành")
+                            {
+                                <a class="btn btn-info me-2 btn-rounded" style="width: 150px;" asp-action="Details" asp-route-id="@datHen.Id">Chi Tiết</a>
+                            }
+                            else if (datHen.TrangThai == "Đã huỷ")
+                            {
+                                <a class="btn btn-dark me-2 btn-rounded" style="width: 150px;" asp-action="Details" asp-route-id="@datHen.Id">Chi Tiết</a>
+                            }
+                            else if (datHen.TrangThai == "Đã tư vấn")
+                            {
+                                <a class="btn btn-success me-2 btn-rounded" style="width: 150px;" asp-action="CapNhat" asp-route-id="@datHen.Id">Cập Nhật</a>                             
+                            }
                         </td>
                     </tr>
                 }
