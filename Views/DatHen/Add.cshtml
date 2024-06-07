@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(function () {
             $("#autocomplete").autocomplete({
@@ -17,6 +20,108 @@
         });
     </script>
 }
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const validTimes = [
+            '07:30 - 08:30',
+            '08:30 - 09:30',
+            '09:30 - 10:30',
+            '13:30 - 14:30',
+            '14:30 - 15:30',
+            '15:30 - 16:30',
+            '16:30 - 17:30',
+            '17:30 - 18:30'
+        ];
+
+        const gioHenContainer = document.getElementById('GioHenContainer');
+        const gioHenInput = document.getElementById('GioHen');
+
+        // Thiết lập các nút giờ hợp lệ
+        validTimes.forEach(function (timeRange) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'btn btn-outline-primary';
+            button.textContent = timeRange;
+            button.dataset.time = timeRange;
+            button.addEventListener('click', function () {
+                // Xóa dấu tích từ các nút khác
+                const buttons = gioHenContainer.getElementsByTagName('button');
+                for (let btn of buttons) {
+                    btn.classList.remove('active');
+                }
+                // Thêm dấu tích cho nút được chọn
+                button.classList.add('active');
+                // Cập nhật giá trị ẩn
+                gioHenInput.value = timeRange;
+            });
+
+            gioHenContainer.appendChild(button);
+        });
+
+        $.datepicker.regional['vi'] = {
+            closeText: 'Đóng',
+            prevText: '&#x3C;Trước',
+            nextText: 'Tiếp&#x3E;',
+            currentText: 'Hôm nay',
+            monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            monthNamesShort: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11', 'Th12'],
+            dayNames: ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'],
+            dayNamesShort: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+            dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+            weekHeader: 'Tuần',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+
+        // Áp dụng ngôn ngữ tiếng Việt cho datepicker
+        $.datepicker.setDefaults($.datepicker.regional['vi']);
+
+        // Khởi tạo datepicker
+        $("#datepicker").datepicker({
+            minDate: '+1D', // Ngày hôm sau
+            maxDate: '+2W', // 2 tuần từ ngày hôm nay
+            beforeShowDay: function (date) {
+                var day = date.getDay();
+                return [(day != 0), '']; // Loại bỏ Chủ Nhật
+            },
+            onSelect: function (dateText) {
+                // Xóa dấu tích từ các nút giờ
+                const buttons = gioHenContainer.getElementsByTagName('button');
+                for (let btn of buttons) {
+                    btn.classList.remove('active');
+                }
+
+                // Xóa giá trị ẩn
+                gioHenInput.value = '';
+
+                // Cập nhật giá trị ngày
+                $('#NgayHen').val(dateText);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: '+1D', // Ngày hôm sau
+            maxDate: '+2W', // 2 tuần từ ngày hôm nay
+            beforeShowDay: function (date) {
+                var day = date.getDay();
+                return [(day != 0), '']; // Loại bỏ Chủ Nhật
+            },
+            onSelect: function (dateText) {
+                // Lấy ngày đã chọn và cập nhật vào input ẩn
+                $('#NgayHen').val(dateText);
+            }
+        });
+    });
+</script>
 
 <style>
     .background-image {
@@ -46,6 +151,29 @@
             background-color: forestgreen; /* Màu nền khi hover */
             color: #fff; /* Màu chữ khi hover */
         }
+
+    .btn-group button {
+        margin-right: 10px; /* Khoảng cách giữa các nút */
+    }
+
+    #GioHenContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+        #GioHenContainer .btn {
+            background: #0DCAF0;
+            color: white;
+            flex: 1 1 20%;
+            margin: 5px;
+        }
+            #GioHenContainer .btn.active::before {
+                content: '\2713'; /* Ký hiệu dấu tích */
+                position: absolute;
+                top: 50%;
+                right: 5px; /* Đặt từ phía bên phải */
+                transform: translateY(-50%); /* Dịch chuyển dấu tích theo trục y */
+                font-size: 1.2em; /* Kích thước của dấu tích */
+            }
 </style>
 
 <br />
@@ -73,17 +201,22 @@
 
                     <div class="form-group">
                         <br />
-                        <label asp-for="NgayHen" class="font-weight-bold">Ngày Hẹn:</label>
-                        <input asp-for="NgayHen" class="form-control" type="date" />
+                        <label class="font-weight-bold">Ngày Hẹn:</label>
+                        <div id="datepicker" class="datepicker"></div>
+                        <input type="hidden" asp-for="NgayHen" id="NgayHen" />
                         <span asp-validation-for="NgayHen" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
                         <br />
-                        <label asp-for="GioHen" class="font-weight-bold">Giờ Hẹn:</label>
-                        <input asp-for="GioHen" class="form-control" type="time" />
+                        <label class="font-weight-bold">Giờ Hẹn:</label>
+                        <div id="GioHenContainer" class="btn-group" role="group">
+                            <!-- Các nút giờ sẽ được thêm vào bằng JavaScript -->
+                        </div>
+                        <input type="hidden" asp-for="GioHen" id="GioHen" />
                         <span asp-validation-for="GioHen" class="text-danger"></span>
                     </div>
+
 
                     <input type="hidden" asp-for="TrangThai" value="Đã đặt lịch" />
 

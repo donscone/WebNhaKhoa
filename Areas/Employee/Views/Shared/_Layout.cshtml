@@ -43,10 +43,7 @@
                             {
                                 <li class="nav-item">
                                     <a id="manage" class="nav-link text-danger" asp-area="Employee" asp-controller="BangGia" asp-action="Index">Quản Lý Dịch Vụ</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger" asp-area="Employee" asp-controller="Order" asp-action="Index">Quản Lý Lịch Hẹn</a>
-                                </li>
+                                </li>                         
                                 @if (ViewBag.UnconsultedCount > 0)
                                 {
                                     <li class="nav-item unconsulted">
@@ -58,19 +55,9 @@
                                 else
                                 {
                                     <li class="nav-item">
-                                        <a class="nav-link text-danger" asp-area="Employee" asp-controller="LichHen" asp-action="Index">Lịch Hẹn Mới</a>
+                                        <a class="nav-link text-danger" asp-area="Employee" asp-controller="LichHen" asp-action="Index">Quản Lý Lịch Hẹn</a>
                                     </li>
-                                }
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger" asp-area="Employee" asp-controller="ThongBao" asp-action="Index">
-                                        <i class="fas fa-bell"></i> Thông Báo
-                                        @if (ViewBag.NotificationCount > 0)
-                                        {
-                                            <span class="badge">@ViewBag.NotificationCount</span>
-                                        }
-                                    </a>
-                                </li>
-
+                                }                             
                             }
                         }
                     </ul>

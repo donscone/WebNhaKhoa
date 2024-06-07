@@ -41,6 +41,12 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
             return View(datHenList);
         }
 
+        public async Task<IActionResult> DanhSachDichVu()
+        {
+            var danhSachDichVu = await _bangGiaRepository.GetAllAsync(); // Phương thức GetAll() để lấy tất cả các dịch vụ từ cơ sở dữ liệu
+
+            return PartialView("_DanhSachDichVu", danhSachDichVu); // Trả về một partial view chứa danh sách dịch vụ
+        }
 
         public async Task<IActionResult> Update(int id)
         {
@@ -133,7 +139,8 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
             {
                 return NotFound();
             }
-            ViewBag.TenDichVu = dichVu.TenDichVu;
+            var danhSachDichVu = await _bangGiaRepository.GetAllAsync();
+            ViewBag.DanhSachDichVu = danhSachDichVu;
 
             return View(datHen);
         }
@@ -172,6 +179,19 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
             return View(datHen);
         }
 
+        public async Task<IActionResult> DaHoanThanhHen(int id)
+        {
+            var lichHen = await _datHenRepository.GetByIdAsync(id);
+            if (lichHen == null)
+            {
+                return NotFound();
+            }
+
+            lichHen.TrangThai = "Đã hoàn thành";
+            await _datHenRepository.UpdateAsync(lichHen);
+
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }

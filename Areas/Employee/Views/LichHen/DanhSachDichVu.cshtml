@@ -1,0 +1,8 @@
+﻿@model IEnumerable<NhaKhoaQuangVu.Models.BangGia>
+
+<ul>
+    @foreach (var dichVu in Model)
+    {
+        <li>@dichVu.TenDichVu</li> <!-- Thay thế TenDichVu bằng tên thuộc tính hiển thị tên dịch vụ của bạn -->
+    }
+</ul>

@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NhaKhoaQuangVu.Models;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace NhaKhoaQuangVu.Areas.Identity.Pages.Account
 {
@@ -29,6 +30,26 @@ namespace NhaKhoaQuangVu.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _userManager = userManager;
+        }
+
+        public IActionResult OnPostGoogleLogin()
+        {
+            var redirectUrl = Url.Page("./Login", pageHandler: "GoogleResponse");
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return new ChallengeResult(GoogleDefaults.AuthenticationScheme, properties);
+        }
+
+        public async Task<IActionResult> OnGetGoogleResponse()
+        {
+            var authenticateResult = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+
+            if (!authenticateResult.Succeeded)
+                return BadRequest(); // TODO: Handle this better
+
+            // Handle the authenticated user info here
+            // For example, create a new user account or sign in the user
+
+            return RedirectToPage("/Index");
         }
 
         /// <summary>

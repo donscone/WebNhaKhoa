@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Easter Tooth</title>
+    <style>   
+        .loading-image {
+            display: none;
+            position: fixed;
+            width: 350px; 
+            height: auto; 
+        }
+        #image1 {
+            top: 10%;
+            left: 10%;
+        }
+
+        #image2 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2);
+        }
+
+        #image3 {
+            top: 10%;
+            right: 10%;
+        }
+
+        #image4 {
+            bottom: 10%;
+            left: 10%;
+        }
+
+        #image5 {
+            bottom: 10%;
+            right: 10%;
+        }
+
+        #idontknow-button {
+            position: center; 
+            bottom: 20px; 
+            left: 50%; 
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="color: blue; text-shadow: 2px 2px 5px #FF0000; font-size: 36px; font-family: Arial, sans-serif;">
+        <br />
+        <marquee behavior="alternate" scrollamount="10">HOW DID YOU GET HERE 0_0 -4°</marquee>
+        <img id="image1" class="loading-image" src="~/images/hicc.png" alt="Loading Animation">
+        <img id="image2" class="loading-image" src="~/images/hicc.png" alt="Loading Animation">
+        <img id="image3" class="loading-image" src="~/images/hicc.png" alt="Loading Animation">
+        <img id="image4" class="loading-image" src="~/images/hicc.png" alt="Loading Animation">
+        <img id="image5" class="loading-image" src="~/images/hicc.png" alt="Loading Animation">
+    </h2>
+
+    <button id="idontknow-button">I DON'T KNOW</button>
+
+    <pre>
+
+
+                        ,----------------,              ,---------,                                  
+                   ,-----------------------,          ,"        ,"|
+                , "                      ,"|        ,"        ,"  |
+                +-----------------------+  |      ,"        ,"    |
+                |  .-----------------.  |  |     +---------+      |
+                |  |     NHÓM ABC    |  |  |     | -==----'|      |
+                |  |                 |  |  |     |         |      |
+                |  |     Nha Khoa    |  |  |/----|`---=    |      |
+                |  |     Quang Vũ    |  |  |   ,/|==== ooo |      ;
+                |  |                 |  |  |  // |(((( [33]|    ,"
+                |  `-----------------'  |," .;'| |((((     |  ,"
+                +-----------------------+  ;;  | |         |,"
+                   /_)______________(_/  //'   | +---------+
+                   ___________________________/___  `,
+                  /  oooooooooooooooo  .o.  oooo /,   \,"-----------
+                 / ==ooooooooooooooo==.o.  ooo= //   ,`\--{)B     ,"
+                /_==__==========__==_ooo__ooo=_/'   /___________,"
+                `-----------------------------'
+
+
+
+
+                       355537                  735553                       
+                   4093     729002        300927     3906                   
+                794               29955992               591                
+             24                                              45             
+             97                                              79             
+            79                                                97            
+            79                                                91            
+             97                                               97            
+             91               NHA KHOA QUANG VŨ               79             
+             24                                              45             
+              97                                            97             
+               38                 NHÓM ABC                 82                         
+                86                                        48                
+                 94                                      59                 
+                  91                                    19                                      
+                  19                                    63                  
+                  19                                    93                  
+                  19                2985                93                  
+                  19              191  191              93                  
+                  79              97    797             91                  
+                  79             95      29             91                           
+                    97          01        70          787                   
+                    50         707         07         05                    
+                     94        30          03        50                     
+                      95       49          66       59                      
+                       56     78            87     64                       
+                        7997 783            181  697                        
+                           353                353                           
+
+    </pre>
+
+    <script>
+        var imagesVisible = false; // Biến để kiểm tra trạng thái hiển thị của các hình ảnh
+
+        document.getElementById("idontknow-button").addEventListener("click", function () {
+            if (!imagesVisible) {
+                // Nếu các hình ảnh chưa được hiển thị, hiển thị chúng
+                document.querySelectorAll(".loading-image").forEach(function (img) {
+                    img.style.display = "block";
+                });
+                imagesVisible = true;
+            } else {
+                // Nếu các hình ảnh đã được hiển thị, ẩn chúng đi
+                document.querySelectorAll(".loading-image").forEach(function (img) {
+                    img.style.display = "none";
+                });
+                imagesVisible = false;
+            }
+        });
+    </script>
+</body>
+</html>

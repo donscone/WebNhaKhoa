@@ -36,19 +36,36 @@ namespace NhaKhoaQuangVu.Controllers
             return View();
         }
 
+        public async Task<IActionResult> DanhSachDichVu()
+        {
+            var danhSachDichVu = await _bangGiaRepository.GetAllAsync(); // Phương thức GetAll() để lấy tất cả các dịch vụ từ cơ sở dữ liệu
+
+            return PartialView("_DanhSachDichVu", danhSachDichVu); // Trả về một partial view chứa danh sách dịch vụ
+        }
+
         [HttpPost]
         public async Task<IActionResult> Add(DatHen datHen)
         {
             if (ModelState.IsValid)
             {
+                // Lưu giá trị HoTen vào TempData
+                TempData["HoTen"] = datHen.HoTen;
+
                 await _datHenRepository.AddAsync(datHen);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(xacNhanDatHen));
             }
 
             var danhSachDichVu = await _bangGiaRepository.GetAllAsync();
             ViewBag.DichVuList = danhSachDichVu.Select(dv => new SelectListItem { Value = dv.MaDichVu.ToString(), Text = dv.TenDichVu }).ToList();
             return View(datHen);
         }
+
+        public IActionResult xacNhanDatHen()
+        {
+            ViewBag.HoTen = TempData["HoTen"];
+            return View();
+        }
+
 
     }
 }

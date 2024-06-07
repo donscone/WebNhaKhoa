@@ -1,0 +1,32 @@
+﻿@model NhaKhoaQuangVu.Models.BangGia
+
+<script>
+    function quayLai() {
+        window.location.href = '/Home/BangGia';
+    }
+</script>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <br />
+            <br />
+            <div class="card mx-auto" style="width: 600px; height: 250px;">
+                <div class="card-body bg-light-blue">
+                    <div class="text-center" style="font-size: 24px; color: deepskyblue; font-weight: bold;">@Model.TenDichVu.ToUpper()</div>
+                    <br />
+                    <p class="card-text" style="font-size: 18px;"><strong>Giá dịch vụ:</strong> @string.Format("{0:N0} VND", Model.GiaDichVu)</p>
+                    <p class="card-text" style="font-size: 18px;"><strong>Mô tả:</strong> @Model.MoTa</p>
+                    <p class="card-text" style="font-size: 18px;"><strong>Chi Tiết:</strong> @Model.ChiTiet</p>
+                    <button class="btn btn-secondary" onclick="quayLai()">Quay lại</button>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+</div>

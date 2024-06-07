@@ -19,9 +19,19 @@ namespace NhaKhoaQuangVu.Controllers
             _context = context;
         }
 
+        public IActionResult Thanhtoan()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Hint()
+        {
+            return View(Hint);
         }
 
         public async Task<IActionResult> BangGiaAsync()
@@ -56,10 +66,24 @@ namespace NhaKhoaQuangVu.Controllers
                 // Nếu query là null hoặc rỗng, trả về trang tìm kiếm không có kết quả
                 return View(new List<BangGia>());
             }
-
             var searchResults = await _bangGiaRepository.SearchAsync(query);
             return View(searchResults);
         }
+
+        public async Task<IActionResult> ChiTiet(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            var bangGia = await _bangGiaRepository.GetByIdAsync(id);
+            if (bangGia == null)
+            {
+                return NotFound();
+            }
+            return View(bangGia);
+        }
+
 
     }
 }

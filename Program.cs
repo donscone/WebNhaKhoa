@@ -7,8 +7,13 @@ using NhaKhoaQuangVu.Repositories;
 using NhaKhoaQuangVu.Models;
 using Microsoft.AspNetCore.Identity;
 using NhaKhoaQuangVu.Helper;
+using NhaKhoaQuangVu.Models.Momo;
+using NhaKhoaQuangVu.Services;
+using System.Configuration;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 builder.Services.AddControllersWithViews();
 
@@ -46,7 +51,18 @@ builder.Services.AddScoped<IEmployeeRepository, EFEmployeeRepository>();
 builder.Services.AddScoped<IOrderRepository, EFOrderRepository>();
 builder.Services.AddScoped<IDatHenRepository, EFDatHenRepository>();
 builder.Services.AddDistributedMemoryCache();
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
+builder.Services.AddScoped<IMomoService, MomoService>();
 builder.Services.AddRazorPages();
+builder.Services.AddAuthentication()
+    .AddGoogle(googleOptions =>
+    {
+        IConfigurationSection googleAuthNSection = configuration.GetSection("Authentication:Google");
+
+        googleOptions.ClientId = googleAuthNSection["ClientId"];
+        googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
+        googleOptions.CallbackPath = "/dang-nhap-tu-google";
+    });
 
 
 var app = builder.Build();
@@ -65,10 +81,9 @@ app.MapRazorPages();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
-         name: "areas",
-         pattern: "{area:exists}/{controller=BangGia}/{action=Index}/{id?}"
-        );
-
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
     endpoints.MapEmployeeDefaultAreaRoute();
 });
 

@@ -13,11 +13,23 @@
     </script>
 }
 
+<script>
+    function quayLai() {
+        window.location.href = '/Home/BangGia';
+    }
+</script>
+
 <style>
     .bg-light-blue {
         background-color: #e0f7fa; /* Màu xanh nhạt */
     }
+
+    .card-link {
+        text-decoration: none; /* Bỏ gạch chân */
+        color: inherit; /* Giữ màu của thẻ cha */
+    }
 </style>
+
 
 <br />
 <h2>Danh Sách Dịch Vụ</h2>
@@ -27,24 +39,23 @@
         @foreach (var bangGia in Model)
         {
             <div class="col mb-4">
-                <!-- Thêm lớp mb-4 để tạo khoảng cách giữa các hàng -->
-                <div class="card bg-light-blue">
-                    <div class="card-body">
-                        <h5 class="card-title" style="color:deepskyblue">@bangGia.TenDichVu</h5>
-                        <p class="card-text fw-bold">Giá dịch vụ: @string.Format("{0:N0} VND", bangGia.GiaDichVu)</p>
-                        <p class="card-text">@bangGia.MoTa</p>
+                <a href="@Url.Action("ChiTiet", "Home", new { id = bangGia.MaDichVu })" class="card-link">
+                    <!-- Thêm lớp mb-4 để tạo khoảng cách giữa các hàng -->
+                    <div class="card bg-light-blue">
+                        <div class="card-body">
+                            <h5 class="card-title" style="color:deepskyblue">@bangGia.TenDichVu</h5>
+                            <p class="card-text fw-bold">Giá dịch vụ: @string.Format("{0:N0} VND", bangGia.GiaDichVu)</p>
+                            <p class="card-text">@bangGia.MoTa</p>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         }
     </div>
+    <button class="btn btn-secondary" onclick="quayLai()">Quay lại</button>
 </div>
 
-<div id="smallPopup" class="popup">
-    <div class="popup-content">
-        <p>Thêm thành công.</p>
-    </div>
-</div>
+
 
 <link rel="stylesheet" href="~/css/site.css">
 <script src="~/js/site.js"></script>

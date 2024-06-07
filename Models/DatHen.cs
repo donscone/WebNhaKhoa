@@ -13,7 +13,7 @@ namespace NhaKhoaQuangVu.Models
         public int MaDichVu { get; set; }
         public DateTime NgayHen { get; set; }
         [Required]
-        public DateTime GioHen { get; set; }
+        public string GioHen { get; set; }
         [Required]
         public string TrangThai { get; set; }
     }

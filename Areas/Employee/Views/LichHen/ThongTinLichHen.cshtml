@@ -1,8 +1,11 @@
 ﻿@model NhaKhoaQuangVu.Models.DatHen
+IEnumerable<NhaKhoaQuangVu.Models.BangGia>
 @{
     ViewData["Title"] = "Thông Tin Lịch Hẹn";
     int unconsultedCount = ViewBag.UnconsultedCount ?? 0;
 }
+@using System.Globalization
+
 
 <br />
 <h1 class="text-center mb-4 text-primary">@ViewData["Title"]</h1>
@@ -16,8 +19,97 @@
     function quayLai() {
         window.location.href = "/Employee/LichHen/Index";
     }
+
+    function openConfirmationModal(id) {
+        // Lấy modal và nút xác nhận
+        var modal = $('#confirmationModal');
+        var confirmButton = modal.find('#confirmButton');
+
+        // Gán URL dựa trên ID của lịch hẹn
+        var url = "/Employee/LichHen/HoanThanhTuVan?id=" + id;
+        confirmButton.attr('href', url);
+
+        // Hiển thị modal
+        modal.modal('show');
+    }
+    function cancelConfirmationModal() {
+        // Lấy modal và ẩn nó
+        var modal = $('#confirmationModal');
+        modal.modal('hide');
+    }
+    function openServiceInfoModal() {
+        // Lấy modal và hiển thị nó
+        var modal = $('#serviceInfoModal');
+        modal.modal('show');
+    }
 </script>
 <br />
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xác Nhận</h5>
+            </div>
+            <div class="modal-body">
+                Đã hoàn thành tư vấn cho lịch hẹn này ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="cancelConfirmationModal()">Huỷ</button>
+                <a id="confirmButton" class="btn btn-primary">Xác Nhận</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" id="serviceInfoModal" tabindex="-1" role="dialog" aria-labelledby="serviceInfoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="serviceInfoModalLabel">Danh sách thông tin dịch vụ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="serviceInfoModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @if (ViewBag.DanhSachDichVu != null)
+                    {
+                        var danhSachDichVu = ViewBag.DanhSachDichVu as List<NhaKhoaQuangVu.Models.BangGia>;
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tên dịch vụ</th>
+                                    <th scope="col">Giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var dichvu in danhSachDichVu)
+                                {
+                                    <tr>
+                                        <td>@dichvu.TenDichVu</td>
+                                        <td>@(dichvu.GiaDichVu.ToString("N0", new CultureInfo("vi-VN")) + " VND")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="serviceInfoModal()">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function serviceInfoModal() {
+            // Lấy modal và ẩn nó
+            var modal = $('#serviceInfoModal');
+            modal.modal('hide');
+        }
+    </script>
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -28,14 +120,16 @@
                     <p class="card-text"><strong>ID Lịch Hẹn:</strong> @Model.Id</p>
                     <p class="card-text"><strong>Số Điện Thoại:</strong> @Model.SDT</p>
                     <p class="card-text"><strong>Ngày Đặt Hẹn:</strong> @Model.NgayHen.ToString("dd/MM/yyyy")</p>
-                    <p class="card-text"><strong>Giờ Đặt Hẹn:</strong> @Model.GioHen.ToString("HH:mm")</p>
+                    <p class="card-text"><strong>Giờ Đặt Hẹn:</strong> @Model.GioHen</p>
                     <p class="card-text"><strong>Dịch Vụ Đặt Hẹn:</strong> @ViewBag.TenDichVu</p>
                     <br />
                     <div class="d-flex justify-content-between">
-                        <button class="btn btn-success" onclick="hoanThanhTuVan('@Model.Id')">Hoàn thành tư vấn</button>
+                        <button class="btn btn-primary" onclick="openServiceInfoModal()">Danh sách thông tin dịch vụ</button>
+                        <button class="btn btn-success" onclick="openConfirmationModal('@Model.Id')">Hoàn thành tư vấn</button>
                         <a href="@Url.Action("Update", "LichHen", new { id = Model.Id })" class="btn btn-primary">Sửa thông tin</a>
                         <button class="btn btn-secondary" onclick="quayLai()">Quay lại</button>
                     </div>
+
                 </div>
             </div>
         </div>

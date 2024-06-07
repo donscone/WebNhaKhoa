@@ -1,0 +1,46 @@
+﻿@model NhaKhoaQuangVu.Models.DatHen
+
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header text-center bg-primary text-white">
+                <h2>Để đặt lịch hẹn vui lòng thanh toán phí dịch vụ </h2>
+            </div>
+            <div class="card-body">
+                <form action="/Momo/CreatePaymentUrl" method="POST">
+                    <div class="form-group">
+                        <label for="FullName">Tên Khách Hàng</label>
+                        <input class="form-control"
+                               id="FullName"
+                               name="FullName"
+                               type="text"
+                               value="@ViewBag.HoTen"
+                               required
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="Amount">Số tiền</label>
+                        <input class="form-control"
+                               id="Amount"
+                               name="Amount"
+                               type="text"
+                               value="10000"
+                               readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="OrderInfo">Nội dung thanh toán</label>
+                        <textarea class="form-control"
+                                  id="OrderInfo"
+                                  name="OrderInfo"
+                                  rows="2">Thanh toán phí dịch vụ đặt lịch hẹn</textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Thanh toán bằng Momo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>

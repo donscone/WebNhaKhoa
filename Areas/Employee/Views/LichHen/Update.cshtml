@@ -16,69 +16,242 @@
     }
 </script>
 
-<h1 class="display-4">Cập Nhật Lịch Hẹn</h1>
+@section Scripts
+{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: '/Home/AutocompleteSearch'
+            });
+        });
+    </script>
+}
 
-<div class="row">
-    <div class="col-md-6">
-        <form asp-controller="LichHen" asp-action="Update" method="post">
-            <input type="hidden" asp-for="Id" />
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const validTimes = [
+            '07:30 - 08:30',
+            '08:30 - 09:30',
+            '09:30 - 10:30',
+            '13:30 - 14:30',
+            '14:30 - 15:30',
+            '15:30 - 16:30',
+            '16:30 - 17:30',
+            '17:30 - 18:30'
+        ];
 
-            <div class="form-group">
-                <br />
-                <label asp-for="HoTen" class="font-weight-bold">Tên Khách Hàng:</label>
-                <input asp-for="HoTen" class="form-control" readonly />
-                <span asp-validation-for="HoTen" class="text-danger"></span>
+        const gioHenContainer = document.getElementById('GioHenContainer');
+        const gioHenInput = document.getElementById('GioHen');
+
+        // Thiết lập các nút giờ hợp lệ
+        validTimes.forEach(function (timeRange) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'btn btn-outline-primary';
+            button.textContent = timeRange;
+            button.dataset.time = timeRange;
+            button.addEventListener('click', function () {
+                // Xóa dấu tích từ các nút khác
+                const buttons = gioHenContainer.getElementsByTagName('button');
+                for (let btn of buttons) {
+                    btn.classList.remove('active');
+                }
+                // Thêm dấu tích cho nút được chọn
+                button.classList.add('active');
+                // Cập nhật giá trị ẩn
+                gioHenInput.value = timeRange;
+            });
+
+            gioHenContainer.appendChild(button);
+        });
+
+        $.datepicker.regional['vi'] = {
+            closeText: 'Đóng',
+            prevText: '&#x3C;Trước',
+            nextText: 'Tiếp&#x3E;',
+            currentText: 'Hôm nay',
+            monthNames: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            monthNamesShort: ['Th1', 'Th2', 'Th3', 'Th4', 'Th5', 'Th6', 'Th7', 'Th8', 'Th9', 'Th10', 'Th11', 'Th12'],
+            dayNames: ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy'],
+            dayNamesShort: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+            dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+            weekHeader: 'Tuần',
+            dateFormat: 'yy-mm-dd',
+            firstDay: 0,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+
+        // Áp dụng ngôn ngữ tiếng Việt cho datepicker
+        $.datepicker.setDefaults($.datepicker.regional['vi']);
+
+        // Khởi tạo datepicker
+        $("#datepicker").datepicker({
+            minDate: '+1D', // Ngày hôm sau
+            maxDate: '+2W', // 2 tuần từ ngày hôm nay
+            beforeShowDay: function (date) {
+                var day = date.getDay();
+                return [(day != 0), '']; // Loại bỏ Chủ Nhật
+            },
+            onSelect: function (dateText) {
+                // Xóa dấu tích từ các nút giờ
+                const buttons = gioHenContainer.getElementsByTagName('button');
+                for (let btn of buttons) {
+                    btn.classList.remove('active');
+                }
+
+                // Xóa giá trị ẩn
+                gioHenInput.value = '';
+
+                // Cập nhật giá trị ngày
+                $('#NgayHen').val(dateText);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            dateFormat: 'yy-mm-dd',
+            minDate: '+1D', // Ngày hôm sau
+            maxDate: '+2W', // 2 tuần từ ngày hôm nay
+            beforeShowDay: function (date) {
+                var day = date.getDay();
+                return [(day != 0), '']; // Loại bỏ Chủ Nhật
+            },
+            onSelect: function (dateText) {
+                // Lấy ngày đã chọn và cập nhật vào input ẩn
+                $('#NgayHen').val(dateText);
+            }
+        });
+    });
+</script>
+
+<style>
+    .background-image {
+        background-image: url('/path/to/your/image.jpg'); /* Đường dẫn đến hình ảnh nền */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card {
+        background-color: #f2f2f2; /* Màu xám nhạt */
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header, .card-title {
+        color: #333; /* Màu chữ */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Màu nền ban đầu của nút */
+        color: #fff; /* Màu chữ ban đầu của nút */
+        transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển đổi màu */
+    }
+
+        .btn-primary:hover {
+            background-color: forestgreen; /* Màu nền khi hover */
+            color: #fff; /* Màu chữ khi hover */
+        }
+
+    .btn-group button {
+        margin-right: 10px; /* Khoảng cách giữa các nút */
+    }
+
+    #GioHenContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+        #GioHenContainer .btn {
+            background: #0DCAF0;
+            color: white;
+            flex: 1 1 20%;
+            margin: 5px;
+        }
+            #GioHenContainer .btn.active::before {
+                content: '\2713'; /* Ký hiệu dấu tích */
+                position: absolute;
+                top: 50%;
+                right: 5px; /* Đặt từ phía bên phải */
+                transform: translateY(-50%); /* Dịch chuyển dấu tích theo trục y */
+                font-size: 1.2em; /* Kích thước của dấu tích */
+            }
+</style>
+
+<br />
+<div class="row justify-content-center">
+    <div class="col-md-8 background-image">
+        <div class="card shadow-sm">
+            <div class="card-header text-center">
+                <h3 class="card-title mb-0">Sửa Thông Tin Lịch Hẹn</h3>
             </div>
+            <div class="card-body">
+                <form asp-controller="LichHen" asp-action="Update" method="post">
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="HoTen" class="font-weight-bold">Tên Khách Hàng:</label>
+                        <input asp-for="HoTen" class="form-control" readonly />
+                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <br />
-                <label asp-for="SDT" class="font-weight-bold">Số Điện Thoại:</label>
-                <input asp-for="SDT" class="form-control" readonly />
-                <span asp-validation-for="SDT" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="SDT" class="font-weight-bold">Số Điện Thoại:</label>
+                        <input asp-for="SDT" class="form-control" readonly />
+                        <span asp-validation-for="SDT" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                </br>
-                <label asp-for="NgayHen" class="font-weight-bold">Ngày Hẹn:</label>
-                <input asp-for="NgayHen" class="form-control" type="date" />
-                <span asp-validation-for="NgayHen" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <br />
+                        <label class="font-weight-bold">Ngày Hẹn:</label>
+                        <div id="datepicker" class="datepicker"></div>
+                        <input type="hidden" asp-for="NgayHen" id="NgayHen" />
+                        <span asp-validation-for="NgayHen" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <br />
-                <label asp-for="GioHen" class="font-weight-bold">Giờ Hẹn:</label>
-                <input asp-for="GioHen" class="form-control" type="time" />
-                <span asp-validation-for="GioHen" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <br />
+                        <label class="font-weight-bold">Giờ Hẹn:</label>
+                        <div id="GioHenContainer" class="btn-group" role="group">
+                            <!-- Các nút giờ sẽ được thêm vào bằng JavaScript -->
+                        </div>
+                        <input type="hidden" asp-for="GioHen" id="GioHen" />
+                        <span asp-validation-for="GioHen" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                </br>
-                <label asp-for="MaDichVu" class="font-weight-bold">Dịch Vụ:</label>
-                <select asp-for="MaDichVu" class="form-control">
-                    <option value="">- Chọn dịch vụ -</option>
-                    @foreach (var item in ViewBag.DichVuList as List<SelectListItem>)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-                <span asp-validation-for="MaDichVu" class="text-danger"></span>
-            </div>
 
-            <div class="form-group">
-                <br />
-                <label asp-for="TrangThai" class="font-weight-bold">Trạng Thái:</label>
-                <select asp-for="TrangThai" class="form-control">
-                    <option value="Đã đặt lịch">Đã đặt lịch</option>
-                    <option value="Đã cập nhật">Đã cập nhật</option>
-                    <option value="Đã hoàn thành">Đã hoàn thành</option>
-                    <option value="Đã huỷ">Đã huỷ</option>
-                    <option value="Đã tư vấn">Đã tư vấn</option>
-                </select>
-                <span asp-validation-for="TrangThai" class="text-danger"></span>
+                    <input type="hidden" asp-for="TrangThai" value="Đã đặt lịch" />
+
+                    <div class="form-group">
+                        <br />
+                        <label asp-for="MaDichVu" class="font-weight-bold">Dịch Vụ:</label>
+                        <select asp-for="MaDichVu" class="form-control">
+                            <option value="">- Chọn dịch vụ -</option>
+                            @foreach (var item in ViewBag.DichVuList as List<SelectListItem>)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                        <span asp-validation-for="MaDichVu" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <br />
+                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                        <button class="btn btn-secondary" onclick="quayLai()">Quay lại</button>
+                    </div>
+                </form>
             </div>
-            <br />
-            <button type="submit" class="btn btn-primary">Cập Nhật</button>
-            <button class="btn btn-secondary" onclick="quayLai()">Quay lại</button>
-        </form>
+        </div>
     </div>
 </div>

@@ -11,5 +11,6 @@ namespace NhaKhoaQuangVu.Models
         public string? TenDichVu { get; set; }
         public decimal GiaDichVu { get; set; }
         public string? MoTa { get; set; }
+        public string ChiTiet {  get; set; }
     }
 }

@@ -176,3 +176,390 @@ footer.footer {
         transform: scale(1);
     }
 }
+
+
+.clock {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    position: relative;
+    margin: auto;
+}
+
+
+.schedule {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+    .schedule .schedule-inner {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .schedule .single-schedule {
+        flex: 1;
+        margin: 0.5rem;
+        background: #1A76D1;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        text-align: left;
+        transition: all 0.3s ease-out;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+        .schedule .single-schedule .inner {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .schedule .single-schedule:before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 80%;
+            height: 90%;
+            background: #1A76D1;
+            opacity: 0;
+            filter: blur(10px);
+            transition: all 0.3s ease-out;
+        }
+
+        .schedule .single-schedule:hover:before {
+            opacity: 0.8;
+        }
+
+        .schedule .single-schedule:hover {
+            transform: translateY(-5px);
+        }
+
+        .schedule .single-schedule span,
+        .schedule .single-schedule h4,
+        .schedule .single-schedule p,
+        .schedule .single-schedule a,
+        .schedule .single-schedule .time-sidual li {
+            color: #fff;
+        }
+
+        .schedule .single-schedule span {
+            display: block;
+        }
+
+        .schedule .single-schedule h4 {
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: capitalize;
+            margin-top: 13px;
+        }
+
+        .schedule .single-schedule p {
+            margin-top: 22px;
+            flex-grow: 1; /* Allow the paragraph to take up remaining space */
+        }
+
+        .schedule .single-schedule a {
+            margin-top: 25px;
+            font-weight: 500;
+            display: inline-block;
+            position: relative;
+        }
+
+            .schedule .single-schedule a:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 1px;
+                width: 0%;
+                background: #fff;
+                transition: all 0.4s ease;
+            }
+
+            .schedule .single-schedule a:hover:before {
+                width: 100%;
+            }
+
+            .schedule .single-schedule a i {
+                margin-left: 10px;
+            }
+
+        .schedule .single-schedule .time-sidual {
+            overflow: hidden;
+            margin-top: 17px;
+        }
+
+            .schedule .single-schedule .time-sidual li {
+                display: block;
+                width: 100%;
+                margin-bottom: 3px;
+            }
+
+                .schedule .single-schedule .time-sidual li:last-child {
+                    margin: 0;
+                }
+
+                .schedule .single-schedule .time-sidual li span {
+                    display: inline-block;
+                    float: right;
+                }
+
+.Feautes {
+    padding-top: 0;
+}
+
+    .Feautes.index2 {
+        padding-top: 100px;
+    }
+
+    .Feautes.testimonial-page {
+        padding-top: 100px;
+    }
+
+    .Feautes .single-features {
+        text-align: center;
+        position: relative;
+        padding: 10px 20px;
+    }
+
+        .Feautes .single-features::before {
+            position: absolute;
+            content: "";
+            right: -72px;
+            top: 60px;
+            width: 118px;
+            border-bottom: 3px dotted #1a76d1;
+        }
+
+        .Feautes .single-features.last::before {
+            display: none;
+        }
+
+        .Feautes .single-features .signle-icon {
+            position: relative;
+        }
+
+            .Feautes .single-features .signle-icon i {
+                font-size: 50px;
+                color: #1a76d1;
+                position: absolute;
+                left: 50%;
+                margin-left: -50px;
+                top: 0;
+                height: 100px;
+                width: 100px;
+                line-height: 100px;
+                text-align: center;
+                border: 1px solid #dddddd;
+                border-radius: 100%;
+                -webkit-transition: all 0.4s ease;
+                -moz-transition: all 0.4s ease;
+                transition: all 0.4s ease;
+            }
+
+        .Feautes .single-features:hover .signle-icon i {
+            background: #1A76D1;
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .Feautes .single-features h3 {
+            padding-top: 128px;
+            color: #2C2D3F;
+            font-weight: 600;
+            font-size: 21px;
+        }
+
+        .Feautes .single-features p {
+            margin-top: 20px;
+        }
+
+.section-title {
+    text-align: center;
+    padding: 20px; /* Optional: Add padding for spacing */
+}
+
+    .section-title img {
+        display: block;
+        margin: 0 auto;
+        width: 100px; /* Adjust width as needed */
+    }
+
+    .section-title h2 {
+        font-size: 24px; /* Adjust size as needed */
+        margin-bottom: 10px;
+    }
+
+    .section-title p {
+        font-size: 16px; /* Adjust size as needed */
+        margin-top: 10px;
+    }
+
+
+.services .single-service {
+    margin: 30px 0;
+    position: relative;
+    padding-left: 70px;
+}
+
+    .services .single-service i {
+        font-size: 45px;
+        color: #1a76d1;
+        position: absolute;
+        left: 0;
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+
+    .services .single-service h4 {
+        text-transform: capitalize;
+        margin-bottom: 25px;
+        color: #2C2D3F;
+    }
+
+        .services .single-service h4 a {
+            color: #2C2D3F;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+            .services .single-service h4 a:hover {
+                color: #1A76D1;
+            }
+
+    .services .single-service p {
+        color: #868686;
+    }
+/*-- Service Details --*/
+.services-details-img {
+    margin-bottom: 50px;
+}
+
+    .services-details-img img {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .services-details-img h2 {
+        font-weight: 600;
+        font-size: 28px;
+        margin-bottom: 16px;
+    }
+
+    .services-details-img P {
+        margin-bottom: 20px;
+    }
+
+    .services-details-img blockquote {
+        font-size: 15px;
+        color: #4a6f8a;
+        background-color: #1a76d1;
+        padding: 30px 75px;
+        line-height: 26px;
+        position: relative;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
+        .services-details-img blockquote i {
+            position: absolute;
+            display: inline-block;
+            top: 20px;
+            left: 38px;
+            font-size: 32px;
+        }
+
+.green-card {
+    background-color: deepskyblue; /* Đây là mã màu xanh. Bạn có thể thay đổi nếu muốn. */
+    color: #fff; /* Màu chữ trắng để tương phản với nền xanh */
+    padding: 10px 0; /* Tùy chỉnh padding theo ý của bạn */
+}
+
+.pricing-table {
+    position: relative;
+}
+
+    .pricing-table .single-table {
+        background: #fff;
+        border: 1px solid #ddd;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin: 15px 0;
+        padding: 45px 35px 30px 35px;
+    }
+        /* Table Head */
+        .pricing-table .single-table .table-head {
+            text-align: center;
+        }
+
+        .pricing-table .single-table .title {
+            font-size: 21px;
+            color: #2C2D3F;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .pricing-table .single-table .amount {
+            font-size: 36px;
+            font-weight: 600;
+            color: #1a76d1;
+        }
+
+            .pricing-table .single-table .amount span {
+                display: inline-block;
+                font-size: 14px;
+                font-weight: 400;
+                color: #868686;
+                margin-left: 8px;
+            }
+        /* Table List */
+        .pricing-table .single-table .table-list {
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+    .pricing-table .table-list li {
+        position: relative;
+        color: #666;
+        text-transform: capitalize;
+        margin-bottom: 18px;
+        padding-right: 32px;
+    }
+
+        .pricing-table .table-list li:last-child {
+            margin-bottom: 0px;
+        }
+
+        .pricing-table .table-list li.cross i {
+            background: #aaaaaa;
+        }
+
+    .pricing-table .table-list i {
+        font-size: 7px;
+        text-align: center;
+        margin-right: 10px;
+        position: absolute;
+        right: 0;
+        height: 16px;
+        width: 16px;
+        line-height: 16px;
+        text-align: center;
+        color: #fff;
+        background: #1a76d1;
+        border-radius: 100%;
+        padding-left: 1px;
+    }
