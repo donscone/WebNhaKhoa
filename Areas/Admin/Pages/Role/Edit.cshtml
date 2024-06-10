@@ -1,0 +1,29 @@
+﻿@page
+@model NhaKhoaQuangVu.Areas.Admin.Pages.Role.EditUserModel
+@{
+    ViewData["Title"] = "Chỉnh sửa người dùng";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="User.Id" />
+    <div class="form-group">
+        <label asp-for="User.FullName"></label>
+        <input asp-for="User.FullName" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="User.Email"></label>
+        <input asp-for="User.Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="User.PhoneNumber"></label>
+        <input asp-for="User.PhoneNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="User.Address"></label>
+        <input asp-for="User.Address" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-page="./Details" asp-route-id="@Model.User.Id" class="btn btn-secondary">Hủy</a>
+</form>

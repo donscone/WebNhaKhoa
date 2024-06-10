@@ -15,70 +15,227 @@
             });
         });
     </script>
-    <style>
-        .img-container {
-            position: relative;
-            display: inline-block;
-            width: 50%;
-            margin-bottom: 1rem;
-            overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài container */
+}
+
+<style>
+    .img-container {
+        position: relative;
+        display: inline-block;
+        width: 50%;
+        margin-bottom: 1rem;
+        overflow: hidden; /* Đảm bảo ảnh không tràn ra ngoài container */
+    }
+
+        .img-container img {
+            width: 620px; /* Kích thước chiều rộng cố định */
+            height: 400px;
+            display: block;
+            object-fit: cover; /* Đảm bảo ảnh được căn chỉnh và điều chỉnh để phù hợp với container */
+            max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+            max-height: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
+            transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
         }
 
-            .img-container img {
-                width: 620px; /* Kích thước chiều rộng cố định */
-                height: 400px;
-                display: block;
-                object-fit: cover; /* Đảm bảo ảnh được căn chỉnh và điều chỉnh để phù hợp với container */
-                max-width: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
-                max-height: 100%; /* Đảm bảo ảnh không vượt quá kích thước của container */
-                transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
-            }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 102, 204, 0.8); /* Lớp phủ màu xanh với độ mờ */
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        text-align: center;
+    }
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 102, 204, 0.8); /* Lớp phủ màu xanh với độ mờ */
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+    .img-container:hover .overlay {
+        opacity: 1;
+    }
+
+    .img-container:hover img {
+        transform: scale(1.1); /* Phóng to ảnh khi hover */
+    }
+
+    #title:hover {
+        color: deepskyblue;
+        transform: scale(1.3);
+    }
+
+    main {
+        margin-bottom: 2rem;
+    }
+    /* Ensure the schedule section is clear and not overlapping */
+    .schedule {
+        clear: both;
+        padding: 2rem 0;
+    }
+
+        .schedule .single-schedule {
+            margin-bottom: 1.5rem;
+        }
+
+
+    .introduction .card img {
+        max-width: 650px;
+        height: 350px;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .introduction .card {
+        background: #AAEBFE;
+        border-radius: 15px; /* Bo tròn card */
+        overflow: hidden; /* Đảm bảo nội dung không tràn ra ngoài */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+        max-width: 1100px; /* Giảm chiều rộng card */
+        margin: auto; /* Căn giữa card */
+    }
+
+        .introduction .card:hover {
+            transform: scale(1.05); /* Phóng to card khi hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Thêm bóng khi hover */
+        }
+
+    .introduction .single-content {
+        padding: 20px; /* Thêm khoảng cách bên trong card */
+    }
+
+    /* Specific adjustments for the services section */
+    .services.section .section-title {
+        text-align: center;
+    }
+
+        .services.section .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .services.section .section-title img {
+            margin-top: 10px;
+        }
+
+    .services.section .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Căn giữa các cột */
+        gap: 20px; /* Khoảng cách giữa các cột */
+    }
+
+    .services.section .col-lg-3,
+    .services.section .col-md-6,
+    .services.section .col-12 {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .services.section .single-service {
+        border: 2px solid #00BFFF; /* Viền màu xanh da trời */
+        padding: 20px;
+        text-align: center; /* Căn đều nội dung */
+        border-radius: 10px;
+        transition: transform 0.3s;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #f9f9f9; /* Thêm nền màu nhạt */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ */
+    }
+
+        .services.section .single-service i {
+            font-size: 40px;
+            color: #00BFFF; /* Màu biểu tượng */
+            margin-bottom: 20px;
+        }
+
+        .services.section .single-service h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .services.section .single-service p {
+            font-size: 16px;
+            line-height: 1.6;
+            flex: 1;
+            margin-bottom: 15px; /* Thêm khoảng cách dưới */
+        }
+
+        .services.section .single-service:hover {
+            transform: translateY(-10px); /* Hiệu ứng khi di chuột qua */
+        }
+
+
+    /* General styles for the letter section */
+    .letter .section-title {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+        .letter .section-title h2 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .letter .section-title img {
+            margin-top: 10px;
+        }
+
+    .letter .card {
+        border: none; /* Remove border */
+        background-color: transparent; /* Make card background transparent */
+    }
+
+        .letter .card h4 {
             text-align: center;
         }
 
-        .img-container:hover .overlay {
-            opacity: 1;
+    .letter .card-body {
+        padding: 0; /* Remove padding */
+    }
+
+    .letter .single-content {
+        background-color: white; /* Background color white */
+        color: black; /* Text color black */
+        padding: 20px;
+        border-radius: 10px;
+        border-width: 5px;
+        transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+        border: 2px solid #00BFFF; /* Blue border color */
+        flex: 1; /* Ensure the content takes up available space */
+    }
+
+        .letter .single-content h4 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
 
-        .img-container:hover img {
-            transform: scale(1.1); /* Phóng to ảnh khi hover */
+        .letter .single-content p {
+            font-size: 16px;
+            line-height: 1.6;
         }
 
-        #title:hover {
-            color: deepskyblue;
-            transform: scale(1.3);
+    .letter img {
+        border-radius: 10px; /* Rounded corners for images */
+    }
+
+    .single-content-image {
+        margin-top: 20px; /* Khoảng cách giữa văn bản và ảnh */
+        margin-left: -20px; /* Đảm bảo khoảng cách bên phải giữa văn bản và ảnh */
+    }
+
+        .single-content-image img {
+            width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của container */
+            height: 500px;
+            border-radius: 10px; /* Góc bo tròn cho ảnh */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ */
+            transition: transform 0.3s, box-shadow 0.3s; /* Hiệu ứng mượt mà khi hover */
         }
-
-        main {
-            margin-bottom: 2rem;
-        }
-
-        /* Ensure the schedule section is clear and not overlapping */
-        .schedule {
-            clear: both;
-            padding: 2rem 0;
-        }
-
-            .schedule .single-schedule {
-                margin-bottom: 1.5rem;
-            }
-    </style>
-
-}
+</style>
 
 <main>
     <section class="row text-center" aria-labelledby="aspnetTitle">
@@ -109,118 +266,98 @@
         </section>
     </div>
 </main>
+
 <br />
 <section class="green-card">
     <div class="container">
         <div class="row"></div>
     </div>
 </section>
-<section class="schedule">
-    <div class="container">
-        <div class="schedule-inner">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- single-schedule -->
-                    <div class="single-schedule first">
-                        <div class="inner">
-                            <div class="single-content">
-                                <span>Lorem Amet</span>
-                                <h4>Emergency Cases</h4>
-                                <p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus convallis sodales.</p>
-                                <a href="#">LEARN MORE</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- single-schedule -->
-                    <div class="single-schedule middle">
-                        <div class="inner">
-                            <div class="single-content">
-                                <span>Fusce Porttitor</span>
-                                <h4>Doctors Timetable</h4>
-                                <p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus convallis sodales.</p>
-                                <a href="#">LEARN MORE</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-12">
-                    <!-- single-schedule -->
-                    <div class="single-schedule last">
-                        <div class="inner">
-                            <div class="single-content">
-                                <span>Donec luctus</span>
-                                <h4>Opening Hours</h4>
-                                <ul class="time-sidual">
-                                    <li class="day">Monday - Friday <span>8.00-20.00</span></li>
-                                    <li class="day">Saturday <span>9.00-18.30</span></li>
-                                    <li class="day">Monday - Thusday <span>9.00-15.00</span></li>
-                                </ul>
-                                <a href="#">LEARN MORE</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<br />
 
-<section class="green-card">
-    <div class="container">
-        <div class="row"></div>
-    </div>
-</section>
-
-<section class="Feautes section">
+<section class="introduction">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h2>We Are Always Ready to Help You & Your Family</h2>
-                    <img src="~/Images/section-img.png" alt="#">
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="single-content">
+                                    <h4>CHẤT LƯỢNG PHỤC VỤ HÀNG ĐẦU</h4>
+                                    <br />
+                                    <p>
+                                        Chúng tôi cam kết mang đến cho bạn dịch vụ chăm sóc nha khoa hàng đầu với đội ngũ bác sĩ giàu kinh nghiệm và tận tâm.
+                                    </p>
+                                    <p>
+                                        Chúng tôi luôn đặt sự an toàn và sự thoải mái của bệnh nhân lên hàng đầu, đảm bảo mọi trải nghiệm điều trị đều thú vị và tuyệt vời.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <img src="~/images/contractBB/chatluong.jpg" alt="Image 1" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <br />
         <div class="row">
-            <div class="col-lg-4 col-12">
-                <!-- Start Single features -->
-                <div class="single-features">
-                    <div class="signle-icon">
-                        <i class="icofont icofont-ambulance-cross"></i>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-lg-6 order-lg-2">
+                                <div class="single-content">
+                                    <h4>TRANG THIẾT BỊ HIỆN ĐẠI</h4>
+                                    <br />
+                                    <p>
+                                        Với trang thiết bị và công nghệ tiên tiến nhất, chúng tôi cung cấp các dịch vụ nha khoa phục vụ tốt nhất cho bạn.
+                                    </p>
+                                    <p>
+                                        Sử dụng các thiết bị hiện đại giúp chúng tôi chẩn đoán và điều trị các vấn đề nha khoa của bạn một cách chính xác và hiệu quả.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 order-lg-1">
+                                <img src="~/images/contractBB/thietbi.jpg" alt="Image 2" class="img-fluid">
+                            </div>
+                        </div>
                     </div>
-                    <h3>Emergency Help</h3>
-                    <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
                 </div>
-                <!-- End Single features -->
             </div>
-            <div class="col-lg-4 col-12">
-                <!-- Start Single features -->
-                <div class="single-features">
-                    <div class="signle-icon">
-                        <i class="icofont icofont-medical-sign-alt"></i>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="single-content">
+                                    <h4>THỜI GIAN HOẠT ĐỘNG</h4>
+                                    <br />
+                                    <p>
+                                        THỨ 2 - THỨ 7  07:30 - 08:30
+                                    </p>
+                                    <p>
+                                        Chúng tôi hoạt động từ Thứ 2 đến Thứ 7, từ 07:00 giờ sáng đến 21:00 giờ, để nâng niu nụ cười của bạn.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <img src="~/images/contractBB/lich.png" alt="Image 3" class="img-fluid">
+                            </div>
+                        </div>
                     </div>
-                    <h3>Enriched Pharmecy</h3>
-                    <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
                 </div>
-                <!-- End Single features -->
-            </div>
-            <div class="col-lg-4 col-12">
-                <!-- Start Single features -->
-                <div class="single-features last">
-                    <div class="signle-icon">
-                        <i class="icofont icofont-stethoscope"></i>
-                    </div>
-                    <h3>Medical Treatment</h3>
-                    <p>Lorem ipsum sit, consectetur adipiscing elit. Maecenas mi quam vulputate.</p>
-                </div>
-                <!-- End Single features -->
             </div>
         </div>
     </div>
+    <br />
 </section>
+
 
 <section class="green-card">
     <div class="container">
@@ -233,67 +370,44 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>We Offer Different Services To Improve Your Health</h2>
-                    <img src="~/Images/section-img.png" alt="#">
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                    <h2>VÌ SAO CHỌN CHÚNG TÔI</h2>
+                    <img src="~/Images/section-img.png" alt="#">                  
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Service -->
+            <div class="col-lg-3 col-md-6 col-12">
                 <div class="single-service">
                     <i class="icofont icofont-prescription"></i>
-                    <h4><a href="service-details.html">General Treatment</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+                    <h4>Đội Ngũ Bác Sĩ - Nhân Viên Luôn Tận Tình, Chu Đáo</h4>
+                    <p>
+                        Đội ngũ bác sĩ của chúng tôi tốt nghiệp các trường đại học y khoa danh tiếng, có nhiều năm kinh nghiệm trong lĩnh vực nha khoa. 
+                        Nhân viên chăm sóc và các bác sĩ sẽ luôn mang đến cho khách hàng dịch vụ điều trị tốt nhất. 
+                        Chúng tôi cam kết mang đến cho khách hàng nụ cười đẹp tự nhiên và an toàn.
+                    </p>
                 </div>
-                <!-- End Single Service -->
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Service -->
+            <div class="col-lg-3 col-md-6 col-12">
                 <div class="single-service">
                     <i class="icofont icofont-tooth"></i>
-                    <h4><a href="service-details.html">Teeth Whitening</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+                    <h4>Cơ Sở Vật Chất Hiện Đại Và Tiên Tiến</h4>
+                    <p>
+                        Nha khoa của chúng tôi được trang bị đầy đủ các thiết bị nha khoa hiện đại nhất, được nhập khẩu từ các nước tiên tiến ở Châu Âu.
+                        Các phòng điều trị được vô trùng khử khuẩn đảm bảo an toàn cho khách hàng.
+                        Chúng tôi luôn cập nhật những công nghệ mới nhất để phục vụ khách hàng tốt nhất.
+                    </p>
                 </div>
-                <!-- End Single Service -->
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Service -->
+            <div class="col-lg-3 col-md-6 col-12">
                 <div class="single-service">
                     <i class="icofont icofont-heart-alt"></i>
-                    <h4><a href="service-details.html">Heart Surgery</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
+                    <h4>Chăm Sóc Khách Hàng Tận Tâm Và Chu Đáo</h4>
+                    <p>
+                        Chúng tôi luôn lắng nghe và thấu hiểu nhu cầu của khách hàng.
+                        Các bác sĩ sẽ tư vấn kỹ lưỡng cho khách hàng về tình trạng răng miệng và phương pháp điều trị phù hợp.
+                        Chúng tôi cam kết mang đến cho khách hàng trải nghiệm dịch vụ chăm sóc nụ cười tốt nhất.
+                    </p>
                 </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="icofont icofont-listening"></i>
-                    <h4><a href="service-details.html">Ear Treatment</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="icofont icofont-eye-alt"></i>
-                    <h4><a href="service-details.html">Vision Problems</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
-                </div>
-                <!-- End Single Service -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Start Single Service -->
-                <div class="single-service">
-                    <i class="icofont icofont-blood"></i>
-                    <h4><a href="service-details.html">Blood Transfusion</a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus dictum eros ut imperdiet. </p>
-                </div>
-                <!-- End Single Service -->
-            </div>
         </div>
     </div>
 </section>
@@ -304,85 +418,43 @@
     </div>
 </section>
 
-<section class="pricing-table section">
+<section class="letter">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>We Provide You The Best Treatment In Resonable Price</h2>
+                    <h2>THƯ NGỎ</h2>
                     <img src="~/Images/section-img.png" alt="#">
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
-                <div class="single-table">
-                    <!-- Table Head -->
-                    <div class="table-head">
-                        <h4 class="title">Plastic Suggery</h4>
-                        <div class="price">
-                            <p class="amount">$199<span>/ Per Visit</span></p>
+        <div class="card">
+            <div class="card-body d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="single-content">
+                            <h4>ĐÔI LỜI YÊU THƯƠNG</h4>
+                            <br />
+                            <p>Kính gửi Quý khách hàng thân mến,</p>
+                            <p>Chúng tôi xin trân trọng mời Quý khách hàng đến thăm phòng khám của chúng tôi - nơi chúng tôi cam kết mang lại cho bạn những trải nghiệm tuyệt vời và dịch vụ chăm sóc tận tình nhất.</p>
+                            <p>Với đội ngũ nhân viên giàu kinh nghiệm và sự nhiệt tình, chúng tôi tự tin rằng bạn sẽ cảm thấy hài lòng với mỗi trải nghiệm tại phòng khám nha khoa Quang Vũ.</p>
+                            <p>Hãy đến và khám phá những dịch vụ tuyệt vời của chúng tôi, chúng tôi cam kết sẽ không làm bạn thất vọng.</p>
+                            <p>Mong sớm được gặp bạn tại, đội ngũ nhân viên - bác sĩ tại phòng khám Nha khoa Quang Vũ.</p>
+                            <p>
+                                Trân trọng,<br>
+                                Phòng khám Nha khoa Quang Vũ
+                            </p>
                         </div>
                     </div>
-                    <!-- Table List -->
-                    <ul class="table-list">
-                        <li></i>Lorem ipsum dolor sit</li>
-                        <li></i>Cubitur sollicitudin fentum</li>
-                        <li></i>Nullam interdum enim</li>
-                        <li></i>Donec ultricies metus</li>
-                        <li></i>Pellentesque eget nibh</li>
-                    </ul>
-                    <!-- Table Bottom -->
-                </div>
-            </div>
-            <!-- End Single Table-->
-            <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
-                <div class="single-table">
-                    <!-- Table Head -->
-                    <div class="table-head">
-                        <h4 class="title">Teeth Whitening</h4>
-                        <div class="price">
-                            <p class="amount">$299<span>/ Per Visit</span></p>
+                    <div class="col-lg-6">
+                        <div class="single-content-image">
+                            <img src="~/images/contractbb/thu.jpg" alt="Thư" class="img-fluid">
+                            </div>
                         </div>
-                    </div>
-                    <!-- Table List -->
-                    <ul class="table-list">
-                        <li></i>Lorem ipsum dolor sit</li>
-                        <li></i>Cubitur sollicitudin fentum</li>
-                        <li></i>Nullam interdum enim</li>
-                        <li></i>Donec ultricies metus</li>
-                        <li></i>Pellentesque eget nibh</li>
-                    </ul>
-                    <!-- Table Bottom -->
-                </div>
+                   </div>
             </div>
-            <!-- End Single Table-->
-            <!-- Single Table -->
-            <div class="col-lg-4 col-md-12 col-12">
-                <div class="single-table">
-                    <!-- Table Head -->
-                    <div class="table-head">
-                        <h4 class="title">Heart Suggery</h4>
-                        <div class="price">
-                            <p class="amount">$399<span>/ Per Visit</span></p>
-                        </div>
-                    </div>
-                    <!-- Table List -->
-                    <ul class="table-list">
-                        <li></i>Lorem ipsum dolor sit</li>
-                        <li></i>Cubitur sollicitudin fentum</li>
-                        <li></i>Nullam interdum enim</li>
-                        <li></i>Donec ultricies metus</li>
-                        <li></i>Pellentesque eget nibh</li>
-                    </ul>
-                    <!-- Table Bottom -->
-                </div>
-            </div>
-            <!-- End Single Table-->
         </div>
     </div>
 </section>
+
 

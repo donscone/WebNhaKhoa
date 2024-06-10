@@ -29,6 +29,11 @@ namespace NhaKhoaQuangVu.Controllers
             return View(datHenList);
         }
 
+        public IActionResult ThongBao()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Add()
         {
             var danhSachDichVu = await _bangGiaRepository.GetAllAsync();
@@ -63,6 +68,7 @@ namespace NhaKhoaQuangVu.Controllers
         public IActionResult xacNhanDatHen()
         {
             ViewBag.HoTen = TempData["HoTen"];
+            ViewBag.SDT = TempData["SDT"];
             return View();
         }
 

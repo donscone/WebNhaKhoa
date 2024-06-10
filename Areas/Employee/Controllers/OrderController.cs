@@ -6,7 +6,7 @@ using NhaKhoaQuangVu.Repositories;
 namespace NhaKhoaQuangVu.Areas.Employee.Controllers
 {
     [Area("Employee")]
-    [Authorize(Roles = SD.Role_Employee)]
+    [Authorize(Roles = $"{SD.Role_Employee},{SD.Role_Admin}")]
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;

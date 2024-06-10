@@ -102,6 +102,9 @@ app.MapControllerRoute(
 name: "employee",
 pattern: "{ area: exists}/{controller=Employee}/{action = Update}/{ id ?}"
     );
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+});
 
 app.Run();

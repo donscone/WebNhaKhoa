@@ -77,6 +77,46 @@ footer.footer {
     }
 
 
+.contact-info {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 10px; /* Khoảng cách với nội dung */
+    border-radius: 20px; /* Bo tròn góc */
+    z-index: 9999; /* Đảm bảo hiển thị phía trước */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9); /* Thêm bóng */
+}
+
+    .contact-info a {
+        display: inline-block;
+        margin-bottom: 10px;
+        width: 50px; /* Độ rộng của icon */
+        height: 50px; /* Chiều cao của icon */
+        border-radius: 50%;
+        background-color: #ffffff; /* Màu nền của icon */
+        text-align: center;
+        text-decoration: none;
+        overflow: hidden; /* Ẩn phần vượt ra của hình ảnh */
+        transition: transform 0.3s ease; /* Thêm hiệu ứng transition */
+    }
+
+        .contact-info a img {
+            width: 100%; /* Đảm bảo hình ảnh sẽ căn giữa */
+            height: auto;
+        }
+
+        /* Hover effect */
+        .contact-info a:hover {
+            background-color: #f0f0f0; /* Màu nền khi hover */
+            transform: scale(1.1); /* Phóng to icon khi hover */
+        }
+
+}
+
 
 @keyframes shake {
     0% {

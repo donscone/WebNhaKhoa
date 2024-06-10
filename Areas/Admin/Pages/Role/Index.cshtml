@@ -1,0 +1,68 @@
+﻿@page "/admin/roles"
+@model NhaKhoaQuangVu.Areas.Admin.Pages.Role.IndexModel
+@{
+    ViewData["Title"] = "Danh sách các chức năng";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - My Application</title>
+    <link rel="stylesheet" href="~/admin/css/site.css" />
+    <script src="~/admin/js/site.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <header>
+            <h2 class="text-center">@ViewData["Title"]</h2>
+            <partial name="_StatusMessage" model="@Model.StatusMessage" />
+        </header>
+        <div class="d-flex justify-content-between my-3">
+            <form method="POST" class="my-1">
+                <button class="btn btn-primary" asp-page="./Add" asp-page-handler="StartNewRole">
+                    Thêm mới Role
+                </button>
+            </form>
+            <a class="btn btn-secondary" asp-page="./User">Gán role cho người dùng</a>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th>Role ID</th>
+                    <th>Tên</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in @Model.roles)
+                {
+                    <tr>
+                        <td>@role.Id</td>
+                        <td>@role.Name</td>
+                        <td>
+                            <form method="POST" class="d-inline">
+                                <button name="Input.ID" value="@role.Id" class="btn btn-success btn-sm" asp-page="./Add" asp-page-handler="StartUpdate">
+                                    Cập nhật Role
+                                </button>
+                            </form>
+                            <form method="POST" class="d-inline" asp-page="./Delete" asp-route-roleid="@role.Id">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    Xóa Role
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
