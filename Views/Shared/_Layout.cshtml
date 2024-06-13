@@ -51,7 +51,7 @@
         </div>
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light" style="background-color: #38B6FF;">
-            <div class="container">             
+            <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon" style="color: white;"></span>
                 </button>
@@ -76,9 +76,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-danger" asp-area="Admin" asp-controller="Employee" asp-action="Index">Nhân Viên</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger" asp-area="Admin" asp-controller="Order" asp-action="Index">Lịch Hẹn</a>
-                                </li>
+
                             }
                             if (User.IsInRole("Employee"))
                             {
@@ -103,7 +101,7 @@
                 <partial name="_LoginPartial" />
             </div>
         </nav>
-    
+
 
     </header>
 
@@ -116,7 +114,8 @@
     <footer id="main-footer" class="bg-secondary">
         <div class="container">
             <div class="row">
-                <div class=""></br>
+                <div class="">
+                    </br>
                     <h3 class="title" style="color: #ffffff;">Nha Khoa Quang Vũ</h3>
                     <div class="textwidget">
                         <p style="color: #ffffff;">
@@ -137,11 +136,12 @@
                 </div>
             </div>
         </div>
-        <iframe allow="microphone;"
-                width="350"
-                height="430"
-                src="https://console.dialogflow.com/api-client/demo/embedded/e6c4b9c1-1021-4904-9056-c8a4a34b080f">
-        </iframe>
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger intent="Chào Mừng"
+                      chat-title="Chat Tư Vấn"
+                      agent-id="e6c4b9c1-1021-4904-9056-c8a4a34b080f"
+                      language-code="vi"></df-messenger>
+
     </footer>
 
 

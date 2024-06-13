@@ -35,15 +35,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-danger" asp-area="Admin" asp-controller="Employee" asp-action="Index">Nhân Viên</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-danger" asp-area="Admin" asp-controller="Order" asp-action="Index">Lịch Hẹn</a>
-                                </li>
                             }
                             if (User.IsInRole("Employee"))
                             {
-                                <li class="nav-item">
-                                    <a id="manage" class="nav-link text-danger" asp-area="Employee" asp-controller="BangGia" asp-action="Index">Quản Lý Dịch Vụ</a>
-                                </li>                         
                                 @if (ViewBag.UnconsultedCount > 0)
                                 {
                                     <li class="nav-item unconsulted">
@@ -57,7 +51,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link text-danger" asp-area="Employee" asp-controller="LichHen" asp-action="Index">Quản Lý Lịch Hẹn</a>
                                     </li>
-                                }                             
+                                }
                             }
                         }
                     </ul>
@@ -77,7 +71,8 @@
     <footer id="main-footer" class="bg-secondary">
         <div class="container">
             <div class="row">
-                <div class=""></br>
+                <div class="">
+                    </br>
                     <h3 class="title" style="color: #ffffff;">Nha Khoa Quang Vũ</h3>
                     <div class="textwidget">
                         <p style="color: #ffffff;">
@@ -106,7 +101,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

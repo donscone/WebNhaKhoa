@@ -167,7 +167,6 @@
             transform: translateY(-10px); /* Hiệu ứng khi di chuột qua */
         }
 
-
     /* General styles for the letter section */
     .letter .section-title {
         text-align: center;
@@ -358,6 +357,117 @@
     <br />
 </section>
 
+<br />
+<section class="green-card">
+    <div class="container">
+        <div class="row"></div>
+    </div>
+</section>
+
+<section class="doctor-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Tam Trụ Của Chúng Tôi</h2>
+                    <img src="~/Images/section-img.png" alt="#">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="card">
+                    <img src="~/Images/contractBB/nhasi1.jpg" alt="Bác sĩ A" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Bác sĩ Chơn Xê Na</h5>
+                        <p class="card-text">
+                            Bác sĩ Xê Na đã có 34 năm kinh nghiệm thăm khám và điều trị chăm sóc sức khỏe răng miệng cho bệnh nhân,
+                            bác luôn hành nghề với một tinh thần nghiêm chỉnh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="card">
+                    <img src="~/images/contractBB/nhasi2.jpg" alt="Bác sĩ B" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Bác sĩ Phan Thiên Vũ</h5>
+                        <p class="card-text">Bác sĩ Thiên Vũ đã có hơn 20 năm kinh nghiệm thăm khám và điều trị chăm sóc sức khỏe răng miệng tổng quát và phục hình thẩm mỹ cho bệnh nhân.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="card">
+                    <img src="~/images/contractBB/nhasi3.jpg" alt="Bác sĩ C" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Bác sĩ Dương Lê Minh Quang</h5>
+                        <p class="card-text">
+                            Triết lý điều trị của bác sĩ Minh Quang là ưu tiên trải nghiệm của bệnh nhân.
+                        </p>
+                        <p class="card-text">
+                            Anh ấy liên tục cập nhật và trau dồi các kỹ năng chuyên môn của mình để đảm bảo kết quả tốt nhất cho bệnh nhân.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <div class="card">
+                    <img src="~/images/contractBB/nhasi1.jpg" alt="Bác sĩ C" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Bác sĩ Nguyễn Quốc Tiến</h5>
+                        <p class="card-text">
+                            "Nếu tôi có thể làm bạn ngủ ngay cả khi bạn đang đọc cái này, thì công việc của tôi coi như hoàn thành!"
+                        </p>
+                        <p class="card-text">
+                            Khi Bác sĩ Tiến bước vào phòng mổ, bạn có thể chắc chắn rằng bạn sẽ không cảm thấy một chút gì - từ đau đớn đến buồn chán!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .doctor-info .card {
+        margin-bottom: 2rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+        .doctor-info .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+    .doctor-info .card-img-top {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 450px;
+        width: 250px;
+        object-fit: cover;
+    }
+
+
+    .doctor-info .card-body {
+        padding: 10px;
+        height: 250px;
+    }
+
+    .doctor-info .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .doctor-info .card-text {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+</style>
 
 <section class="green-card">
     <div class="container">
@@ -371,7 +481,7 @@
             <div class="col-lg-12">
                 <div class="section-title">
                     <h2>VÌ SAO CHỌN CHÚNG TÔI</h2>
-                    <img src="~/Images/section-img.png" alt="#">                  
+                    <img src="~/Images/section-img.png" alt="#">
                 </div>
             </div>
         </div>
@@ -381,8 +491,8 @@
                     <i class="icofont icofont-prescription"></i>
                     <h4>Đội Ngũ Bác Sĩ - Nhân Viên Luôn Tận Tình, Chu Đáo</h4>
                     <p>
-                        Đội ngũ bác sĩ của chúng tôi tốt nghiệp các trường đại học y khoa danh tiếng, có nhiều năm kinh nghiệm trong lĩnh vực nha khoa. 
-                        Nhân viên chăm sóc và các bác sĩ sẽ luôn mang đến cho khách hàng dịch vụ điều trị tốt nhất. 
+                        Đội ngũ bác sĩ của chúng tôi tốt nghiệp các trường đại học y khoa danh tiếng, có nhiều năm kinh nghiệm trong lĩnh vực nha khoa.
+                        Nhân viên chăm sóc và các bác sĩ sẽ luôn mang đến cho khách hàng dịch vụ điều trị tốt nhất.
                         Chúng tôi cam kết mang đến cho khách hàng nụ cười đẹp tự nhiên và an toàn.
                     </p>
                 </div>
@@ -408,8 +518,8 @@
                         Chúng tôi cam kết mang đến cho khách hàng trải nghiệm dịch vụ chăm sóc nụ cười tốt nhất.
                     </p>
                 </div>
+            </div>
         </div>
-    </div>
 </section>
 
 <section class="green-card">
@@ -449,9 +559,9 @@
                     <div class="col-lg-6">
                         <div class="single-content-image">
                             <img src="~/images/contractbb/thu.jpg" alt="Thư" class="img-fluid">
-                            </div>
                         </div>
-                   </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

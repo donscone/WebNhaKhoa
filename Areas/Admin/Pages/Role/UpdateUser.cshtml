@@ -4,36 +4,38 @@
     ViewData["Title"] = "Chi tiết người dùng";
 }
 
-<h1>@ViewData["Title"]</h1>
 
-@if (!string.IsNullOrEmpty(Model.StatusMessage))
-{
-    <div class="alert alert-info">
-        @Model.StatusMessage
-    </div>
-}
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
 
-<form method="post">
-    <input type="hidden" asp-for="User.Id" />
-    <div class="form-group">
-        <label asp-for="User.FullName"></label>
-        <input asp-for="User.FullName" class="form-control"  />
-    </div>
-    <div class="form-group">
-        <label asp-for="User.Email"></label>
-        <input asp-for="User.Email" class="form-control" readonly />
-    </div>
-    <div class="form-group">
-        <label asp-for="User.PhoneNumber"></label>
-        <input asp-for="User.PhoneNumber" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="User.Address"></label>
-        <input asp-for="User.Address" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-page="./User" class="btn btn-secondary">Hủy</a>
-</form>
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert alert-info">
+            @Model.StatusMessage
+        </div>
+    }
+    <form method="post">
+        <input type="hidden" asp-for="User.Id" />
+        <div class="form-group">
+            <label asp-for="User.FullName"></label>
+            <input asp-for="User.FullName" class="form-control"  />
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Email"></label>
+            <input asp-for="User.Email" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="User.PhoneNumber"></label>
+            <input asp-for="User.PhoneNumber" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Address"></label>
+            <input asp-for="User.Address" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-page="./User" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

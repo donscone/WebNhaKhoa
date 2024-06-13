@@ -141,7 +141,7 @@ namespace NhaKhoaQuangVu.Areas.Employee.Controllers
             }
             var danhSachDichVu = await _bangGiaRepository.GetAllAsync();
             ViewBag.DanhSachDichVu = danhSachDichVu;
-
+            ViewBag.TenDichVu = dichVu.TenDichVu;
             return View(datHen);
         }
 
